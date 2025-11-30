@@ -193,6 +193,4 @@ rules:
   - RULE-SET,geolocation-!cn,PROXY #非大陆的地理位置流量，走代理
   - RULE-SET,proxy,PROXY           #捕获未被明确分流的代理流量
   
-
   - MATCH,PROXY
-
