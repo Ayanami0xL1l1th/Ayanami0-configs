@@ -37,6 +37,7 @@ dns:
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
+    include-all: true
     type: select
     proxies:
       - HK
@@ -194,3 +195,4 @@ rules:
   
 
   - MATCH,PROXY
+
