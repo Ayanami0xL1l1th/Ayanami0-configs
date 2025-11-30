@@ -94,7 +94,8 @@ proxy-groups:
     interval: 300
     tolerance: 50
     include-all: true
-    
+# —————————
+
 rule-anchor:
   Classical: &Classical
     {type: http, behavior: classical, format: text, interval: 86400}
@@ -104,8 +105,6 @@ rule-anchor:
     {type: http, behavior: ipcidr, format: mrs, interval: 86400}
   Domain: &Domain
     {type: http, behavior: domain, format: mrs, interval: 86400}
-
-# —————————
 
 rule-providers:
 
@@ -193,4 +192,6 @@ rules:
   - RULE-SET,geolocation-!cn,PROXY #非大陆的地理位置流量，走代理
   - RULE-SET,proxy,PROXY           #捕获未被明确分流的代理流量
   
+
   - MATCH,PROXY
+  # —————————
