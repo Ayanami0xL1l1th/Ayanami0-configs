@@ -1,0 +1,596 @@
+                             ###Ayanami0's 自用配置###
+mixed-port: 7890
+redir-port: 7891
+tproxy-port: 1536
+ipv6: false
+mode: Rule
+allow-lan: true
+disable-keep-alive: true
+geodata-mode: false
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
+experimental:
+  http-headers:
+    request:
+      - name: "User-Agent"
+        value: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
+      - name: "Accept-Language"
+        value: "en-US,en;q=0.9"
+unified-delay: true
+tcp-concurrent: true
+log-level: silent
+find-process-mode: always
+global-client-fingerprint: random
+
+
+external-controller: 0.0.0.0:9090
+secret: "123456"
+external-ui: WebUI/Zashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
+external-controller-cors:
+  allow-origins:
+    - "*"
+  allow-private-network: true
+
+
+p: &p
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: http://www.qualcomm.cn/generate_204
+    interval: 300
+  proxy: 订阅更新
+  header: # 如遇订阅加载不出来请切换ua
+      User-Agent:  # 使用注释法由上到下 默认使用第一个
+        - "clash-verge/v2.2.3"
+        - "ClashMetaForAndroid/2.11.2.Meta"
+        - "ClashforWindows/0.19.23"
+        - "clash.meta"
+        - "mihomo"
+A: &A
+  filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
+  use:
+  - p1
+  - p2
+  - p3
+  - p4
+
+All: &All
+  type: url-test
+  use:
+  - p1
+  - p2
+  - p3
+  - p4
+
+proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↓
+  p1: # 如遇订阅加载不出来，请尝试切换ua
+    <<: *p
+    override:
+      additional-prefix: "p1"
+    path: ./proxies/p1.yaml
+    url: "订阅链接"
+
+  p2:
+    <<: *p
+    override:
+      additional-prefix: "p2"
+    path: ./proxies/p2.yaml
+    url: "订阅链接"
+
+  p3:
+    <<: *p
+    override:
+      additional-prefix: "p3"
+    path: ./proxies/p3.yaml
+    url: "订阅链接"
+
+  p4:
+    <<: *p
+    override:
+      additional-prefix: "p4"
+    path: ./proxies/p4.yaml
+    url: "订阅链接"
+
+profile: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↑
+  store-selected: true
+  store-fake-ip: true
+
+# 嗅探模块
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+.v2ex.com"
+  skip-domain: # 如遇需内部通信的应用请放行该Domain名
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+# —————————
+
+# 网卡模块
+tun:
+  enable: true  # 默认开
+  device: mihomo-core
+  stack: mixed
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  udp-timeout: 300
+  auto-route: true
+  strict-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+
+# DNS
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  prefer-h3: false     # 如果DNS服务器支持DoH3会优先使用h3，默认关
+  respect-rules: true  # 让连接DNS服务器时能够遵循规则
+  cache-algorithm: arc # 使用性能更优的 ARC 缓存算法
+  cache-size: 2048     # 限制缓存大小，避免占用过多内存
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "RULE-SET:CN_Domain"
+    - "RULE-SET:Private_Domain"
+    - "RULE-SET:GoogleFCM_Domain"
+    - "+.3gppnetwork.org"
+    - "+.xtracloud.net"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 223.6.6.6
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver:
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+  nameserver-policy:
+    "RULE-SET:CN_Domain,Microsoft_Domain,Apple_Domain":
+       - https://dns.alidns.com/dns-query
+       - https://doh.pub/dns-query
+# —————————
+
+proxy_groups: &proxy_groups
+    type: select
+    proxies:
+      - PROXY
+      - REJECT
+      - LOWEST
+      - FALLBACK
+      - BALANCE
+      - HK
+      - TW
+      - SG
+      - JP
+      - US
+      - OT
+      - DIRECT
+    <<: *A
+CNproxy_groups: &CNproxy_groups
+    type: select
+    proxies:
+      - DIRECT
+      - REJECT
+      - PROXY
+      - LOWEST
+      - FALLBACK
+      - BALANCE
+      - HK
+      - TW
+      - SG
+      - JP
+      - US
+      - OT
+    <<: *A
+# —————————
+
+proxy-groups:
+  - name: PROXY
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
+    type: select
+    proxies:
+      - LOWEST
+      - FALLBACK
+      - BALANCE
+      - HK
+      - TW
+      - SG
+      - JP
+      - US
+      - OT
+      - DIRECT
+
+  - name: UPDATD
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: HK
+    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/hk.svg"
+    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
+    <<: *All
+    
+  - name: SG
+    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/sg.svg"
+    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
+    <<: *All
+    
+  - name: TW
+    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/cn.svg"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
+    <<: *All
+
+  - name: JP
+    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/jp.svg"
+    filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
+    <<: *All
+
+  - name: US
+    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
+    <<: *All
+
+  - name: OT
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
+    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
+    <<: *All
+
+  - name: GAME
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
+    <<: *CNproxy_groups
+
+  - name: Apple
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
+    <<: *CNproxy_groups
+
+  - name: Microsoft
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Microsoft.svg"
+    <<: *CNproxy_groups
+
+  - name: Telegram
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    <<: *proxy_groups
+
+  - name: Discord
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
+    <<: *proxy_groups
+
+  - name: Spotify
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
+    <<: *proxy_groups
+
+  - name: TikTok
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
+    <<: *proxy_groups
+
+  - name: YouTube
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
+    <<: *proxy_groups
+
+  - name: Netflix
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
+    <<: *proxy_groups
+
+  - name: Google
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
+    <<: *proxy_groups
+
+  - name: GoogleFCM
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
+    <<: *proxy_groups
+
+  - name: Facebook
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
+    <<: *proxy_groups
+
+  - name: OpenAI
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
+    <<: *proxy_groups
+
+  - name: GitHub
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
+    <<: *proxy_groups
+
+  - name: Twitter(X)
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
+    <<: *proxy_groups
+
+  - name: rePROXY
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
+    <<: *proxy_groups
+
+  - name: WebRTC
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
+    type: select
+    proxies:
+      - REJECT
+      - REJECT-DROP
+      - PASS
+
+  - name: LOWEST
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    type: url-test
+    <<: *A
+
+  - name: FALLBACK
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    type: fallback
+    <<: *A
+
+  - name: BALANCE
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    type: load-balance
+    strategy: round-robin
+    <<: *A
+    
+  - name: CNTEST
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Meter.svg"
+    type: select
+    url: http://www.qualcomm.cn/generate_204
+    interval: 86400
+    proxies:
+      - DIRECT
+# —————————
+
+rule-providers:
+
+###WebRTC###
+
+  WebRTC_Port/Domain:
+    <<: *Classical
+    path: ./rules/WebRTC.list
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
+
+###国内/私有IP，Domain###
+
+  CN_IP:
+    <<: *IPCIDR
+    path: ./rules/CN_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs"
+  CN_Domain:
+    <<: *Domain
+    path: ./rules/CN_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"
+  Private_Domain:
+    <<: *Domain
+    path: ./rules/LAN.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+  Private_IP:
+    <<: *IPCIDR
+    path: ./rules/Private_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+
+###直连/代理补充规则###
+
+  blackmatrix7_direct:
+    <<: *YAML
+    path: ./ruleset/blackmatrix7_direct.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml"
+  proxy:
+    <<: *Domain
+    path: ./ruleset/proxy.mrs
+    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs"
+  gfw_domain:
+    <<: *Domain
+    path: ./ruleset/gfw_domain.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"
+  geolocation-!cn:
+    <<: *Domain
+    path: ./ruleset/geolocation-!cn.mrs
+    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"
+
+###去广告###
+
+  AWAvenue_Ads_Rule:
+    <<: *YAML
+    path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+
+###游戏###
+
+  GAME:
+    <<: *YAML
+    path: ./rules/Game.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+
+###国外###
+
+  TikTok_Domain:
+    <<: *Domain
+    path: ./rules/TikTok.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
+
+  Spotify_Domain:
+    <<: *Domain
+    path: ./rules/Spotify.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+  Spotify_IP:
+    <<: *IPCIDR
+    path: ./rules/Spotify_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+
+  Facebook_Domain:
+    <<: *Domain
+    path: ./rules/Facebook.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
+  Facebook_IP:
+    <<: *IPCIDR
+    path: ./rules/Facebook_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
+
+  Telegram_Domain:
+    <<: *Domain
+    path: ./rules/Telegram.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+  Telegram_IP:
+    <<: *IPCIDR
+    path: ./rules/Telegram_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+  Telegram_No_Resolve:
+    <<: *YAML
+    path: ./rules/Telegram_No_Resolve.yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
+
+  YouTube_Domain:
+    <<: *Domain
+    path: ./rules/YouTube.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+  YouTube_IP:
+    <<: *IPCIDR
+    path: ./rules/YouTube_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
+
+  Google_Domain:
+    <<: *Domain
+    path: ./rules/Google.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Google/Google_OCD_Domain.mrs"
+  Google_IP:
+    <<: *IPCIDR
+    path: ./rules/Google_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Google/Google_OCD_IP.mrs"
+
+  GoogleFCM_Domain:
+    <<: *Domain
+    path: ./rules/GoogleFCM.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+  GoogleFCM_IP:
+    <<: *IPCIDR
+    path: ./rules/GoogleFCM_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+
+  Microsoft_Domain:
+    <<: *Domain
+    path: ./rules/Microsoft.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+
+  Apple_Domain:
+    <<: *Domain
+    path: ./rules/Apple.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
+  Apple_IP:
+    <<: *IPCIDR
+    path: ./rules/Apple_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Apple/Apple_OCD_IP.mrs"
+
+  OpenAI_Domain:
+    <<: *Domain
+    path: ./rules/OpenAI.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+  OpenAI_IP:
+    <<: *IPCIDR
+    path: ./rules/OpenAI_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+
+  Netflix_Domain:
+    <<: *Domain
+    path: ./rules/Netflix.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
+  Netflix_IP:
+    <<: *IPCIDR
+    path: ./rules/Netflix_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
+
+  Discord_Domain:
+    <<: *Domain
+    path: ./rules/Discord.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
+
+  GitHub_Domain:
+    <<: *Domain
+    path: ./rules/GitHub.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
+
+  Twitter_Domain:
+    <<: *Domain
+    path: ./rules/Twitter.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
+  Twitter_IP:
+    <<: *IPCIDR
+    path: ./rules/Twitter_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
+# —————————
+
+rules:
+  - DST-PORT,53,DIRECT
+  - DST-PORT,853,DIRECT
+
+  - RULE-SET,WebRTC_Port/Domain,WebRTC
+  - RULE-SET,AWAvenue_Ads_Rule,REJECT      #秋风去广告
+  
+  - RULE-SET,blackmatrix7_direct,DIRECT   #直连补充规则
+  - RULE-SET,GAME,DIRECT                  #游戏，走直连
+  - RULE-SET,CN_Domain,DIRECT, no-resolve
+  - RULE-SET,CN_IP,DIRECT
+  - RULE-SET,Private_Domain,DIRECT
+  - RULE-SET,Private_IP,DIRECT
+
+  - RULE-SET,GitHub_Domain,GitHub
+
+  - RULE-SET,Discord_Domain,Discord
+
+  - RULE-SET,TikTok_Domain,TikTok
+
+  - RULE-SET,Twitter_Domain,Twitter(X)
+  - RULE-SET,Twitter_IP,Twitter(X)
+
+  - RULE-SET,YouTube_Domain,YouTube
+  - RULE-SET,YouTube_IP,YouTube
+
+  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
+
+  - RULE-SET,Google_Domain,Google
+  - RULE-SET,Google_IP,Google
+
+  - RULE-SET,Netflix_Domain,Netflix
+  - RULE-SET,Netflix_IP,Netflix
+
+  - RULE-SET,Spotify_Domain,Spotify
+  - RULE-SET,Spotify_IP,Spotify
+
+  - RULE-SET,Facebook_Domain,Facebook
+  - RULE-SET,Facebook_IP,Facebook
+
+  - RULE-SET,OpenAI_Domain,OpenAI
+  - RULE-SET,OpenAI_IP,OpenAI
+
+  - RULE-SET,Apple_Domain,Apple
+  - RULE-SET,Apple_IP,Apple
+
+  - RULE-SET,Microsoft_Domain,Microsoft
+
+  - RULE-SET,Telegram_Domain,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
+  - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
+
+  - DOMAIN,browserleaks.com,rePROXY
+  
+  - RULE-SET,gfw_domain,PROXY      #被GFW阻断的域名，走代理
+  - RULE-SET,geolocation-!cn,PROXY #非大陆的地理位置流量，走代理
+  - RULE-SET,proxy,PROXY           #捕获未被明确分流的代理流量
+  
+  - MATCH,rePROXY
+# —————————
