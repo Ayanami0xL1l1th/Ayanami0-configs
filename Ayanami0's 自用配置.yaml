@@ -185,7 +185,7 @@ proxy_groups: &proxy_groups
       - SG
       - JP
       - US
-      - OT
+      - WD
       - DIRECT
     <<: *A
 CNproxy_groups: &CNproxy_groups
@@ -202,7 +202,7 @@ CNproxy_groups: &CNproxy_groups
       - SG
       - JP
       - US
-      - OT
+      - WD
     <<: *A
 # —————————
 
@@ -219,7 +219,7 @@ proxy-groups:
       - SG
       - JP
       - US
-      - OT
+      - WD
       - DIRECT
 
   - name: UPDATD
@@ -230,32 +230,32 @@ proxy-groups:
       - PROXY
 
   - name: HK
-    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/hk.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
     <<: *All
     
   - name: SG
-    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/sg.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
     <<: *All
     
   - name: TW
-    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/cn.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
     <<: *All
 
   - name: JP
-    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/jp.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
     <<: *All
 
   - name: US
-    icon: "https://cdn.jsdelivr.net/gh/hampusborgos/country-flags@main/svg/us.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)).*$"
     <<: *All
 
-  - name: OT
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
+  - name: WD
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/World_Map.png"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     <<: *All
 
@@ -543,7 +543,7 @@ rules:
   
   - RULE-SET,blackmatrix7_direct,DIRECT   #直连补充规则
   - RULE-SET,GAME,DIRECT                  #游戏，走直连
-  - RULE-SET,CN_Domain,DIRECT, no-resolve
+  - RULE-SET,CN_Domain,DIRECT,no-resolve
   - RULE-SET,CN_IP,DIRECT
   - RULE-SET,Private_Domain,DIRECT
   - RULE-SET,Private_IP,DIRECT
