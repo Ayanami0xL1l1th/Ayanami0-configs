@@ -356,6 +356,16 @@ proxy-groups:
       - DIRECT
 # —————————
 
+rule-anchor:
+  Classical: &Classical
+    {type: http, behavior: classical, format: text, interval: 86400}
+  YAML: &YAML
+    {type: http, behavior: classical, format: yaml, interval: 86400}
+  IPCIDR: &IPCIDR
+    {type: http, behavior: ipcidr, format: yaml, interval: 86400}
+  Domain: &Domain
+    {type: http, behavior: domain, format: yaml, interval: 86400}
+
 rule-providers:
 
 ###WebRTC###
@@ -369,31 +379,31 @@ rule-providers:
 
   CN_IP:
     <<: *IPCIDR
-    path: ./rules/CN_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs"
+    path: ./rules/CN_IP.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_IP.yaml"
   CN_Domain:
     <<: *Domain
-    path: ./rules/CN_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"
-  Private_Domain:
-    <<: *Domain
-    path: ./rules/LAN.mrs
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+    path: ./rules/CN_Domain.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml"
   Private_IP:
     <<: *IPCIDR
-    path: ./rules/Private_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+    path: ./rules/Private_IP.yaml
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_IP.yaml"
+  Private_Domain:
+    <<: *Domain
+    path: ./rules/Private_Domain.yaml
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_Domain.yaml"
 
 ###直连/代理补充规则###
 
-  blackmatrix7_direct:
+  direct:
     <<: *YAML
-    path: ./ruleset/blackmatrix7_direct.yaml
+    path: ./ruleset/direct.yaml
     url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml"
   proxy:
-    <<: *Domain
-    path: ./ruleset/proxy.mrs
-    url: "https://github.com/DustinWin/ruleset_geodata/releases/download/mihomo-ruleset/proxy.mrs"
+    <<: *YAML
+    path: ./ruleset/proxy.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Global/Global_Classical.yaml"
   gfw_domain:
     <<: *Domain
     path: ./ruleset/gfw_domain.mrs
@@ -539,9 +549,9 @@ rules:
   - DST-PORT,853,DIRECT
 
   - RULE-SET,WebRTC_Port/Domain,WebRTC
-  - RULE-SET,AWAvenue_Ads_Rule,REJECT      #秋风去广告
+  - RULE-SET,AWAvenue_Ads_Rule,REJECT     #秋风去广告
   
-  - RULE-SET,blackmatrix7_direct,DIRECT   #直连补充规则
+  - RULE-SET,direct,DIRECT                #直连规则
   - RULE-SET,GAME,DIRECT                  #游戏，走直连
   - RULE-SET,CN_Domain,DIRECT,no-resolve
   - RULE-SET,CN_IP,DIRECT
