@@ -11,7 +11,7 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
-    - "RULE-SET:CHINA"
+    - "RULE-SET:ChinaMax_Domain"
     - "RULE-SET:Private_Domain"
     - "+.3gppnetwork.org"
     - "+.xtracloud.net"
@@ -29,7 +29,7 @@ dns:
     - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
   nameserver-policy:
-    "RULE-SET:CHINA,Microsoft_Domain":
+    "RULE-SET:ChinaMax_Domain,Microsoft_Domain":
        - https://dns.alidns.com/dns-query
        - https://doh.pub/dns-query
 # —————————
@@ -102,9 +102,9 @@ rule-anchor:
   YAML: &YAML
     {type: http, behavior: classical, format: yaml, interval: 86400}
   IPCIDR: &IPCIDR
-    {type: http, behavior: ipcidr, format: yaml, interval: 86400}
+    {type: http, behavior: ipcidr, format: mrs, interval: 86400}
   Domain: &Domain
-    {type: http, behavior: domain, format: yaml, interval: 86400}
+    {type: http, behavior: domain, format: mrs, interval: 86400}
 
 rule-providers:
 
@@ -117,25 +117,37 @@ rule-providers:
   
 ###国内/私有###
 
-  CHINA:
+  ChinaMax:
     <<: *YAML
-    path: ./rules/CHINA.yaml
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical.yaml"
-  Private:
-    <<: *YAML
-    path: ./rules/Private.yaml
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
+    path: ./rules/ChinaMax.yaml
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/ChinaMax/ChinaMax.yaml"
+  ChinaMax_IP:
+    <<: *IPCIDR
+    path: ./rules/ChinaMax_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
+  ChinaMax_Domain:
+    <<: *Domain
+    path: ./rules/ChinaMax_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/ChinaMax/ChinaMax_Domain.mrs"
+  Private_Domain:
+    <<: *Domain
+    path: ./rules/LAN_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+  Private_IP:
+    <<: *IPCIDR
+    path: ./rules/LAN_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
 
   direct:
     <<: *YAML
     path: ./ruleset/direct.yaml
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Direct/Direct.yaml"
   proxy:
     <<: *YAML
     path: ./ruleset/proxy.yaml
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Classical.yaml"
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Global/Global_Classical.yaml"
   gfw_domain:
     <<: *Domain
     path: ./ruleset/gfw_domain.mrs
@@ -163,8 +175,8 @@ rule-providers:
 
   Microsoft_Domain:
     <<: *Domain
-    path: ./rules/Microsoft.yaml
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.yaml"
+    path: ./rules/Microsoft.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
     
 rules:
   - DST-PORT,53,DIRECT
@@ -174,8 +186,11 @@ rules:
   - RULE-SET,AWAvenue_Ads_Rule,REJECT      #秋风去广告
   - RULE-SET,direct,DIRECT                 #直连规则
   - RULE-SET,GAME,DIRECT                   #游戏，走直连
-  - RULE-SET,CHINA,DIRECT
-  - RULE-SET,Private,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
+  - RULE-SET,ChinaMax_IP,DIRECT
+  - RULE-SET,Private_Domain,DIRECT
+  - RULE-SET,Private_IP,DIRECT
   - RULE-SET,Microsoft_Domain,DIRECT
   
   - RULE-SET,gfw_domain,PROXY      #被GFW阻断的域名，走代理
