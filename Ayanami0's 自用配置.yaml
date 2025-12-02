@@ -44,7 +44,7 @@ p: &p
     enable: true
     url: http://www.qualcomm.cn/generate_204
     interval: 300
-  proxy: UPDATA
+  proxy: UPDATE
   header: # 如遇订阅加载不出来请切换ua
       User-Agent:  # 使用注释法由上到下 默认使用第一个
         - "clash-verge/v2.2.3"
@@ -222,7 +222,7 @@ proxy-groups:
       - WD
       - DIRECT
 
-  - name: UPDATD
+  - name: UPDATE
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
     type: select
     proxies:
