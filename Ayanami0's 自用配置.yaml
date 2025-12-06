@@ -377,10 +377,6 @@ rule-providers:
 
 ###国内/私有###
 
-  ChinaMax:
-    <<: *YAML
-    path: ./rules/ChinaMax.yaml
-    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax.yaml"
   ChinaMax_IP:
     <<: *IPCIDR
     path: ./rules/ChinaMax_IP.mrs
@@ -400,22 +396,18 @@ rule-providers:
 
 ###直连/代理规则###
 
-  direct:
+  Direct:
     <<: *YAML
     path: ./ruleset/direct.yaml
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Direct/Direct.yaml"
-  proxy:
-    <<: *YAML
-    path: ./ruleset/proxy.yaml
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Global/Global_Classical.yaml"
-  gfw_domain:
+  Global_Domain:
     <<: *Domain
-    path: ./ruleset/gfw_domain.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"
-  geolocation-!cn:
-    <<: *Domain
-    path: ./ruleset/geolocation-!cn.mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"
+    path: ./rules/Global_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Global/Global_OCD_Domain.mrs"
+  Global_IP:
+    <<: *IPCIDR
+    path: ./rules/Global_OCD_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Global/Global_OCD_IP.mrs"
 
 ###去广告###
 
@@ -426,10 +418,14 @@ rule-providers:
 
 ###游戏###
 
-  GAME:
-    <<: *YAML
-    path: ./rules/Game.yaml
-    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+  Game_Domain:
+    <<: *Domain
+    path: ./rules/Game_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_Domain.mrs"
+  Game_IP:
+    <<: *IPCIDR
+    path: ./rules/Game_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_IP.mrs"
 
 ###国外###
 
@@ -553,10 +549,10 @@ rules:
   - DST-PORT,853,DIRECT
 
   - RULE-SET,WebRTC,WebRTC
-  - RULE-SET,direct,DIRECT                #直连规则
+  - RULE-SET,Direct,DIRECT                #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,REJECT     #秋风去广告
-  - RULE-SET,GAME,DIRECT                  #游戏，走直连
-  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,GAME_Domain,DIRECT           #游戏，走直连
+  - RULE-SET,GAME_IP,DIRECT
   - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
   - RULE-SET,ChinaMax_IP,DIRECT
   - RULE-SET,Private_Domain,DIRECT
@@ -602,9 +598,8 @@ rules:
 
   - DOMAIN,browserleaks.com,rePROXY
   
-  - RULE-SET,gfw_domain,PROXY      #被GFW阻断的域名，走代理
-  - RULE-SET,geolocation-!cn,PROXY #非大陆的地理位置流量，走代理
-  - RULE-SET,proxy,PROXY           #捕获未被明确分流的代理流量
+  - RULE-SET,Global_Domain,PROXY
+  - RULE-SET,Global_IP,PROXY
   
   - MATCH,rePROXY
 # —————————
