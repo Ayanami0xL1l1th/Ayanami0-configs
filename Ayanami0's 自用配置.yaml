@@ -5,6 +5,7 @@ tproxy-port: 1536
 ipv6: false
 mode: Rule
 allow-lan: true
+bind-address: "*"
 disable-keep-alive: true
 geodata-mode: false
 geo-auto-update: true
@@ -13,13 +14,6 @@ geox-url:
   geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
   geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
   asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
-experimental:
-  http-headers:
-    request:
-      - name: "User-Agent"
-        value: "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36"
-      - name: "Accept-Language"
-        value: "en-US,en;q=0.9"
 unified-delay: true
 tcp-concurrent: true
 log-level: silent

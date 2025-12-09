@@ -1,4 +1,25 @@
                             ###Ayanami0's override###
+mixed-port: 7890
+ipv6: false
+mode: Rule
+allow-lan: true
+bind-address: "*"
+disable-keep-alive: true
+unified-delay: true
+tcp-concurrent: true
+log-level: silent
+find-process-mode: strict
+global-client-fingerprint: random
+
+external-controller: 0.0.0.0:9090
+secret: "123456"
+external-ui: WebUI/Zashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
+external-controller-cors:
+  allow-origins:
+    - "*"
+  allow-private-network: true
+
 dns:
   enable: true
   ipv6: false
@@ -11,6 +32,9 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
     - "RULE-SET:ChinaMax_Domain"
     - "RULE-SET:Private_Domain"
     - "+.3gppnetwork.org"
