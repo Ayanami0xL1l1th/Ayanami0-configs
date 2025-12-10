@@ -75,7 +75,7 @@ proxy-groups:
   - name: HK
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
     include-all: true
@@ -83,7 +83,7 @@ proxy-groups:
   - name: SG
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     filter: (?i)新加坡|坡|狮城|SG|Singapore
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
     include-all: true
@@ -91,7 +91,7 @@ proxy-groups:
   - name: TW
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     filter: (?i)台|新北|彰化|TW|Taiwan
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
     include-all: true
@@ -99,7 +99,7 @@ proxy-groups:
   - name: JP
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
     include-all: true
@@ -107,7 +107,7 @@ proxy-groups:
   - name: US
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
     include-all: true
@@ -115,7 +115,7 @@ proxy-groups:
   - name: WD
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
     exclude-filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网
-    type: url-test
+    type: select
     interval: 300
     tolerance: 50
     include-all: true
@@ -235,7 +235,7 @@ proxy-groups:
 
   - name: LOWEST
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
-    type: url-test
+    type: select
     include-all: true
 
   - name: FALLBACK
