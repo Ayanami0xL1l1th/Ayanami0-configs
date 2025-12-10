@@ -37,6 +37,7 @@ dns:
     - "+.local"
     - "RULE-SET:ChinaMax_Domain"
     - "RULE-SET:Private_Domain"
+    - "RULE-SET:GoogleFCM_Domain"
     - "+.3gppnetwork.org"
     - "+.xtracloud.net"
   default-nameserver:
@@ -191,13 +192,22 @@ rule-providers:
     path: ./rules/Game_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_IP.mrs"
 
-###Microsoft###
+###国外直连###
 
   Microsoft_Domain:
     <<: *Domain
     path: ./rules/Microsoft.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
-    
+
+  GoogleFCM_Domain:
+    <<: *Domain
+    path: ./rules/GoogleFCM.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+  GoogleFCM_IP:
+    <<: *IPCIDR
+    path: ./rules/GoogleFCM_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+
 rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
@@ -212,7 +222,9 @@ rules:
   - RULE-SET,Private_Domain,DIRECT
   - RULE-SET,Private_IP,DIRECT
   - RULE-SET,Microsoft_Domain,DIRECT
-  
+  - RULE-SET,GoogleFCM_Domain,DIRECT
+  - RULE-SET,GoogleFCM_IP,DIRECT
+
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
   

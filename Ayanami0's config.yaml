@@ -142,6 +142,9 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
     - "RULE-SET:ChinaMax_Domain"
     - "RULE-SET:Private_Domain"
     - "RULE-SET:GoogleFCM_Domain"
@@ -182,23 +185,12 @@ proxy_groups: &proxy_groups
       - WD
       - DIRECT
     <<: *A
-CNproxy_groups: &CNproxy_groups
+CN_groups: &CN_groups
     type: select
     proxies:
       - DIRECT
-      - REJECT
       - PROXY
-      - LOWEST
-      - FALLBACK
-      - BALANCE
-      - HK
-      - TW
-      - SG
-      - JP
-      - US
-      - WD
     <<: *A
-# —————————
 
 proxy-groups:
   - name: PROXY
@@ -253,17 +245,17 @@ proxy-groups:
     exclude-filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
     <<: *All
 
-  - name: GAME
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
-    <<: *CNproxy_groups
-
   - name: Apple
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
-    <<: *CNproxy_groups
+    <<: *CN_groups
 
   - name: Microsoft
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Microsoft.svg"
-    <<: *CNproxy_groups
+    <<: *CN_groups
+
+  - name: GoogleFCM
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
+    <<: *CN_groups
 
   - name: Telegram
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
@@ -291,10 +283,6 @@ proxy-groups:
 
   - name: Google
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
-    <<: *proxy_groups
-
-  - name: GoogleFCM
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
     <<: *proxy_groups
 
   - name: Facebook
@@ -564,7 +552,8 @@ rules:
   - RULE-SET,YouTube_Domain,YouTube
   - RULE-SET,YouTube_IP,YouTube
 
-  - DOMAIN-KEYWORD,mtalk.google,GoogleFCM
+  - RULE-SET,GoogleFCM_Domain,GoogleFCM
+  - RULE-SET,GoogleFCM_IP,GoogleFCM
 
   - RULE-SET,Google_Domain,Google
   - RULE-SET,Google_IP,Google
