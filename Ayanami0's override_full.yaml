@@ -12,9 +12,9 @@ find-process-mode: strict
 global-client-fingerprint: random
 
 external-controller: 127.0.0.1:9090
-secret: "123456"
-external-ui: WebUI/Zashboard
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
+#secret: "123456"
+#external-ui: WebUI/Zashboard
+#external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
 external-controller-cors:
   allow-origins:
     - "*"
