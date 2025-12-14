@@ -6,13 +6,6 @@ mode: Rule
 allow-lan: true
 bind-address: "*"
 disable-keep-alive: true
-geodata-mode: false
-geo-auto-update: true
-geo-update-interval: 24
-geox-url:
-  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  asn: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb"
 unified-delay: true
 tcp-concurrent: true
 log-level: silent
