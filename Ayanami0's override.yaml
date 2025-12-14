@@ -19,6 +19,7 @@ external-controller-cors:
   allow-origins:
     - "*"
   allow-private-network: true
+# —————————
 
 dns:
   enable: true
@@ -61,7 +62,6 @@ dns:
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
-    include-all: true
     type: select
     proxies:
       - HK
@@ -70,6 +70,13 @@ proxy-groups:
       - JP
       - US
       - WD
+    include-all: true
+
+  - name: INFO
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    filter: (?i)套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额
+    type: select
+    include-all: true
 
   - name: HK
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
@@ -118,6 +125,13 @@ proxy-groups:
     interval: 300
     tolerance: 50
     include-all: true
+
+  - name: ADS
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
 # —————————
 
 rule-anchor:
@@ -179,6 +193,14 @@ rule-providers:
     <<: *YAML
     path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+  Advertising_Domain:
+    <<: *YAML
+    path: ./ruleset/Advertising_OCD_Domain.mrs
+    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_Domain.mrs"
+  Advertising_IP:
+    <<: *YAML
+    path: ./ruleset/Advertising_OCD_IP.mrs
+    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_IP.mrs"
 
 ###游戏###
 
@@ -213,7 +235,9 @@ rules:
   
   - RULE-SET,WebRTC,REJECT
   - RULE-SET,Direct,DIRECT                #直连规则
-  - RULE-SET,AWAvenue_Ads_Rule,REJECT     #秋风去广告
+  - RULE-SET,AWAvenue_Ads_Rule,ADS        #去广告
+  - RULE-SET,Advertising_Domain,ADS
+  - RULE-SET,Advertising_IP,ADS
   - RULE-SET,Game_Domain,DIRECT           #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve

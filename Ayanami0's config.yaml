@@ -1,4 +1,3 @@
-###Ayanami0's 自用配置###
 mixed-port: 7890
 redir-port: 7891
 tproxy-port: 1536
@@ -17,9 +16,8 @@ geox-url:
 unified-delay: true
 tcp-concurrent: true
 log-level: silent
-find-process-mode: always
+find-process-mode: strict
 global-client-fingerprint: random
-
 
 external-controller: 127.0.0.1:9090
 secret: "123456"
@@ -29,7 +27,7 @@ external-controller-cors:
   allow-origins:
     - "*"
   allow-private-network: true
-
+# —————————
 
 p: &p
   type: http
@@ -46,21 +44,6 @@ p: &p
         - "ClashforWindows/0.19.23"
         - "clash.meta"
         - "mihomo"
-A: &A
-  filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
-  use:
-  - p1
-  - p2
-  - p3
-  - p4
-
-All: &All
-  type: url-test
-  use:
-  - p1
-  - p2
-  - p3
-  - p4
 
 proxy-providers:
   p1: # 如遇订阅加载不出来，请尝试切换ua
@@ -91,11 +74,11 @@ proxy-providers:
     path: ./proxies/p4.yaml
     url: ##"订阅链接"##
 
-profile:
+profile: # ← 此函数位置请勿变动！此为模块更新时备份恢复订阅变量范围 ↑
   store-selected: true
   store-fake-ip: true
+# —————————
 
-# 嗅探模块
 sniffer:
   enable: true
   force-dns-mapping: true
@@ -115,10 +98,9 @@ sniffer:
     - "+.push.apple.com"
 # —————————
 
-# 网卡模块
 tun:
-  enable: true  # 默认开
-  device: mihomo-core
+  enable: true
+  device: Meta
   stack: mixed
   dns-hijack:
     - any:53
@@ -128,8 +110,8 @@ tun:
   strict-route: true
   auto-redirect: false
   auto-detect-interface: true
+# —————————
 
-# DNS
 dns:
   enable: true
   ipv6: false
@@ -163,33 +145,10 @@ dns:
     - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
   nameserver-policy:
-    "RULE-SET:ChinaMax_Domain,Microsoft_Domain":
+    "RULE-SET:ChinaMax_Domain,Microsoft_Domain,Apple_Domain":
        - https://dns.alidns.com/dns-query
        - https://doh.pub/dns-query
 # —————————
-
-proxy_groups: &proxy_groups
-    type: select
-    proxies:
-      - PROXY
-      - REJECT
-      - LOWEST
-      - FALLBACK
-      - BALANCE
-      - HK
-      - TW
-      - SG
-      - JP
-      - US
-      - WD
-      - DIRECT
-    <<: *A
-CN_groups: &CN_groups
-    type: select
-    proxies:
-      - DIRECT
-      - PROXY
-    <<: *A
 
 proxy-groups:
   - name: PROXY
@@ -206,6 +165,240 @@ proxy-groups:
       - US
       - WD
       - DIRECT
+    include-all: true
+
+  - name: INFO
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    filter: "^(?=.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
+    type: select
+    include-all: true
+
+  - name: HK
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
+    type: select
+    include-all: true
+
+  - name: SG
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
+    type: select
+    include-all: true
+
+  - name: TW
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
+    type: select
+    include-all: true
+
+  - name: JP
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
+    type: select
+    include-all: true
+
+  - name: US
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates)).*$"
+    type: select
+    include-all: true
+
+  - name: WD
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
+    exclude-filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
+    type: select
+    include-all: true
+
+  - name: ADS
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+
+  - name: GAME
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: Apple
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: Microsoft
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Microsoft.svg"
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: GoogleFCM
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
+  - name: Telegram
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: Discord
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: Spotify
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: TikTok
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: YouTube
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: Netflix
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: Google
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: Facebook
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: OpenAI
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: GitHub
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: Twitter(X)
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
+  - name: rePROXY
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
 
   - name: UPDATE
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
@@ -213,96 +406,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY
-
-  - name: HK
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
-    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
-    <<: *All
-    
-  - name: SG
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
-    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
-    <<: *All
-    
-  - name: TW
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
-    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
-    <<: *All
-
-  - name: JP
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
-    filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
-    <<: *All
-
-  - name: US
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates)).*$"
-    <<: *All
-
-  - name: WD
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
-    exclude-filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
-    <<: *All
-
-  - name: Apple
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
-    <<: *CN_groups
-
-  - name: Microsoft
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Microsoft.svg"
-    <<: *CN_groups
-
-  - name: GoogleFCM
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
-    <<: *CN_groups
-
-  - name: Telegram
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
-    <<: *proxy_groups
-
-  - name: Discord
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
-    <<: *proxy_groups
-
-  - name: Spotify
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
-    <<: *proxy_groups
-
-  - name: TikTok
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
-    <<: *proxy_groups
-
-  - name: YouTube
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
-    <<: *proxy_groups
-
-  - name: Netflix
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
-    <<: *proxy_groups
-
-  - name: Google
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
-    <<: *proxy_groups
-
-  - name: Facebook
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
-    <<: *proxy_groups
-
-  - name: OpenAI
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
-    <<: *proxy_groups
-
-  - name: GitHub
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
-    <<: *proxy_groups
-
-  - name: Twitter(X)
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
-    <<: *proxy_groups
-
-  - name: rePROXY
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
-    <<: *proxy_groups
 
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
@@ -315,26 +418,21 @@ proxy-groups:
   - name: LOWEST
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: url-test
-    <<: *A
+    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
+    include-all: true
 
   - name: FALLBACK
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: fallback
-    <<: *A
+    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
+    include-all: true
 
   - name: BALANCE
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: load-balance
     strategy: round-robin
-    <<: *A
-    
-  - name: CNTEST
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Meter.svg"
-    type: select
-    url: http://www.qualcomm.cn/generate_204
-    interval: 86400
-    proxies:
-      - DIRECT
+    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
+    include-all: true
 # —————————
 
 rule-anchor:
@@ -356,7 +454,7 @@ rule-providers:
     path: ./rules/WebRTC.list
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
 
-###国内/私有###
+###国内/私有IP&Domain###
 
   ChinaMax_IP:
     <<: *IPCIDR
@@ -396,6 +494,14 @@ rule-providers:
     <<: *YAML
     path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+  Advertising_Domain:
+    <<: *YAML
+    path: ./ruleset/Advertising_OCD_Domain.mrs
+    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_Domain.mrs"
+  Advertising_IP:
+    <<: *YAML
+    path: ./ruleset/Advertising_OCD_IP.mrs
+    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_IP.mrs"
 
 ###游戏###
 
@@ -523,21 +629,22 @@ rule-providers:
     <<: *IPCIDR
     path: ./rules/Twitter_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
-# —————————
 
 rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
-
   - RULE-SET,WebRTC,WebRTC
-  - RULE-SET,Direct,DIRECT                #直连规则
-  - RULE-SET,AWAvenue_Ads_Rule,REJECT     #秋风去广告
-  - RULE-SET,Game_Domain,DIRECT           #游戏，走直连
+  - RULE-SET,Direct,DIRECT               #直连规则
+  - RULE-SET,AWAvenue_Ads_Rule,ADS       #去广告
+  - RULE-SET,Advertising_Domain,ADS
+  - RULE-SET,Advertising_IP,ADS
+  - RULE-SET,Game_Domain,DIRECT          #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
   - RULE-SET,ChinaMax_IP,DIRECT
   - RULE-SET,Private_Domain,DIRECT
   - RULE-SET,Private_IP,DIRECT
+
 
   - RULE-SET,GitHub_Domain,GitHub
 
@@ -576,7 +683,7 @@ rules:
 
   - RULE-SET,Telegram_Domain,Telegram
   - RULE-SET,Telegram_IP,Telegram,no-resolve
-  - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
+  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
 
   - DOMAIN,browserleaks.com,rePROXY
   
