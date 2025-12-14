@@ -150,6 +150,18 @@ dns:
        - https://doh.pub/dns-query
 # —————————
 
+proxy_groups: &pg
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - DIRECT
+
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
@@ -165,12 +177,6 @@ proxy-groups:
       - US
       - WD
       - DIRECT
-    include-all: true
-
-  - name: INFO
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-    filter: "^(?=.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
-    type: select
     include-all: true
 
   - name: HK
@@ -246,159 +252,51 @@ proxy-groups:
 
   - name: Telegram
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: Discord
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: Spotify
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: TikTok
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: YouTube
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: Netflix
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: Google
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: Facebook
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: OpenAI
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: GitHub
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: Twitter(X)
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: rePROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
-    type: select
-    proxies:
-      - PROXY
-      - HK
-      - SG
-      - TW
-      - JP
-      - US
-      - WD
-      - DIRECT
+    <<: *pg
 
   - name: UPDATE
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
