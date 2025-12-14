@@ -495,14 +495,13 @@ rule-providers:
     path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
   Advertising_Domain:
-    <<: *YAML
+    <<: *Domain
     path: ./ruleset/Advertising_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_Domain.mrs"
   Advertising_IP:
-    <<: *YAML
+    <<: *IPCIDR
     path: ./ruleset/Advertising_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_IP.mrs"
-
 ###游戏###
 
   Game_Domain:
