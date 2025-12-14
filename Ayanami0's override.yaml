@@ -72,12 +72,6 @@ proxy-groups:
       - WD
     include-all: true
 
-  - name: INFO
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"
-    filter: (?i)套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额
-    type: select
-    include-all: true
-
   - name: HK
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
