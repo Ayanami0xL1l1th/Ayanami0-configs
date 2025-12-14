@@ -404,6 +404,10 @@ rule-providers:
     <<: *IPCIDR
     path: ./rules/Game_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_IP.mrs"
+  GameDownload_Domain:
+    <<: *Domain
+    path: ./rules/GameDownload_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
 
@@ -531,6 +535,7 @@ rules:
   - RULE-SET,Advertising_IP,ADS
   - RULE-SET,Game_Domain,DIRECT          #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
+  - RULE-SET,GameDownload_Domain,DIRECT
   - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
   - RULE-SET,ChinaMax_IP,DIRECT
   - RULE-SET,Private_Domain,DIRECT
