@@ -256,14 +256,6 @@ proxy-groups:
     type: load-balance
     strategy: round-robin
     include-all: true
-
-  - name: CNTEST
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Meter.svg"
-    type: select
-    url: http://www.qualcomm.cn/generate_204
-    interval: 86400
-    proxies:
-      - DIRECT
 # —————————
 
 rule-anchor:
