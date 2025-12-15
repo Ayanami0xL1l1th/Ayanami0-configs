@@ -226,11 +226,12 @@ proxy-groups:
       - PROXY
       - DIRECT
 
-  - name: rePROXY
+  - name: FINAL
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
     type: select
     proxies:
       - PROXY
+      - DIRECT
 
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
@@ -520,10 +521,10 @@ rules:
   - RULE-SET,Telegram_IP,Telegram,no-resolve
   - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
 
-  - DOMAIN,browserleaks.com,rePROXY
+  - DOMAIN,browserleaks.com,FINAL
   
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
   
-  - MATCH,rePROXY
+  - MATCH,FINAL
 # —————————

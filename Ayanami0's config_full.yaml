@@ -288,7 +288,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
     <<: *pg
 
-  - name: rePROXY
+  - name: FINAL
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
     <<: *pg
 
@@ -581,10 +581,10 @@ rules:
   - RULE-SET,Telegram_IP,Telegram,no-resolve
   - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
 
-  - DOMAIN,browserleaks.com,rePROXY
+  - DOMAIN,browserleaks.com,FINAL
   
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
   
-  - MATCH,rePROXY
+  - MATCH,FINAL
 # —————————
