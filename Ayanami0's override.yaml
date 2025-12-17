@@ -164,7 +164,14 @@ rule-providers:
     <<: *Classical
     path: ./rules/WebRTC.list
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
-  
+
+###Jsdelivr###
+
+  Jsdelivr_Domain:
+    <<: *Domain
+    path: ./rules/Jsdelivr_Domain.mrs
+    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Jsdelivr/Jsdelivr_OCD_Domain.mrs"
+
 ###国内/私有###
 
   ChinaMax_IP:
@@ -251,6 +258,7 @@ rules:
   
   - RULE-SET,WebRTC,REJECT
   - RULE-SET,Direct,DIRECT                #直连规则
+  - RULE-SET,Jsdelivr_Domain,DIRECT
   - RULE-SET,AWAvenue_Ads_Rule,ADS        #去广告
   - RULE-SET,Advertising_Domain,ADS
   - RULE-SET,Advertising_IP,ADS
