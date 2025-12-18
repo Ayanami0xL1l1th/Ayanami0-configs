@@ -153,6 +153,7 @@ proxy_groups: &pg
       - JP
       - US
       - WD
+      - LowRate
       - DIRECT
 
 proxy-groups:
@@ -208,6 +209,14 @@ proxy-groups:
     type: select
     include-all: true
 
+  - name: LowRate
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png"
+    filter: (?<![0-9])0\.(?:0[0-9]{1,2}|[1-9])(?![0-9])
+    type: select
+    interval: 300
+    tolerance: 50
+    include-all: true
+
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
@@ -242,6 +251,10 @@ proxy-groups:
     proxies:
       - DIRECT
       - PROXY
+
+  - name: Emby
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
+    <<: *pg
 
   - name: Telegram
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
@@ -349,19 +362,19 @@ rule-providers:
 
   ChinaMax_IP:
     <<: *IPCIDR
-    path: ./rules/ChinaMax_IP.mrs
+    path: ./rules/ChinaMax_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   ChinaMax_Domain:
     <<: *Domain
-    path: ./rules/ChinaMax_Domain.mrs
+    path: ./rules/ChinaMax_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   Private_Domain:
     <<: *Domain
-    path: ./rules/LAN_Domain.mrs
+    path: ./rules/Lan_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Private_IP:
     <<: *IPCIDR
-    path: ./rules/LAN_IP.mrs
+    path: ./rules/Lan_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
@@ -393,6 +406,7 @@ rule-providers:
     <<: *IPCIDR
     path: ./ruleset/Advertising_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Advertising/Advertising_OCD_IP.mrs"
+
 ###游戏###
 
   Game_Domain:
@@ -409,6 +423,11 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
+
+  Emby_Domain:
+    <<: *Domain
+    path: ./rules/Emby_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
 
   TikTok_Domain:
     <<: *Domain
@@ -540,6 +559,7 @@ rules:
   - RULE-SET,Private_Domain,DIRECT
   - RULE-SET,Private_IP,DIRECT
 
+  - RULE-SET,Emby_Domain,Emby
 
   - RULE-SET,GitHub_Domain,GitHub
 

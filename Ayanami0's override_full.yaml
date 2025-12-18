@@ -77,6 +77,19 @@ dns:
        - https://doh.pub/dns-query
 # —————————
 
+proxy_groups: &pg
+    type: select
+    proxies:
+      - PROXY
+      - HK
+      - SG
+      - TW
+      - JP
+      - US
+      - WD
+      - LowRate
+      - DIRECT
+
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
@@ -138,6 +151,14 @@ proxy-groups:
     tolerance: 50
     include-all: true
 
+  - name: LowRate
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png"
+    filter: (?<![0-9])0\.(?:0[0-9]{1,2}|[1-9])(?![0-9])
+    type: select
+    interval: 300
+    tolerance: 50
+    include-all: true
+
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
@@ -159,54 +180,37 @@ proxy-groups:
       - DIRECT
       - PROXY
 
+  - name: Emby
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
+    <<: *pg
+
   - name: Telegram
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: Discord
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: Spotify
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: TikTok
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: YouTube
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: Netflix
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: Google
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: GoogleFCM
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
@@ -215,41 +219,25 @@ proxy-groups:
       - DIRECT
       - PROXY
 
-
   - name: Facebook
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: OpenAI
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: GitHub
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: Twitter(X)
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: FINAL
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
-    type: select
-    proxies:
-      - PROXY
-      - DIRECT
+    <<: *pg
 
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
@@ -299,20 +287,21 @@ rule-providers:
 
   ChinaMax_IP:
     <<: *IPCIDR
-    path: ./rules/ChinaMax_IP.mrs
+    path: ./rules/ChinaMax_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   ChinaMax_Domain:
     <<: *Domain
-    path: ./rules/ChinaMax_Domain.mrs
+    path: ./rules/ChinaMax_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   Private_Domain:
     <<: *Domain
-    path: ./rules/LAN_Domain.mrs
+    path: ./rules/Lan_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Private_IP:
     <<: *IPCIDR
-    path: ./rules/LAN_IP.mrs
+    path: ./rules/Lan_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+
 
 ###直连/代理规则###
 
@@ -360,6 +349,11 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
+
+  Emby_Domain:
+    <<: *Domain
+    path: ./rules/Emby_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
 
   TikTok_Domain:
     <<: *Domain
@@ -491,6 +485,8 @@ rules:
   - RULE-SET,ChinaMax_IP,DIRECT
   - RULE-SET,Private_Domain,DIRECT
   - RULE-SET,Private_IP,DIRECT
+
+  - RULE-SET,Emby_Domain,Emby
 
   - RULE-SET,GitHub_Domain,GitHub
 
