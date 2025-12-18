@@ -337,11 +337,11 @@ rule-providers:
 
   Game_Domain:
     <<: *Domain
-    path: ./rules/Game_Domain.mrs
+    path: ./rules/Game_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_Domain.mrs"
   Game_IP:
     <<: *IPCIDR
-    path: ./rules/Game_IP.mrs
+    path: ./rules/Game_OCD_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_IP.mrs"
   GameDownload_Domain:
     <<: *Domain
