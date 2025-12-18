@@ -261,7 +261,7 @@ rule-providers:
   Jsdelivr_Domain:
     <<: *Domain
     path: ./rules/Jsdelivr_Domain.mrs
-    url: "https://raw.githubusercontent.com/GitMetaio/rule/refs/heads/master/rule/Clash/Jsdelivr/Jsdelivr_OCD_Domain.mrs"
+    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Jsdelivr/Jsdelivr_OCD_Domain.mrs"
 
 ###国内/私有IP&Domain###
 
