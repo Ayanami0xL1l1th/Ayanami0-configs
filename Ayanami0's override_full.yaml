@@ -249,7 +249,7 @@ proxy-groups:
 
   - name: LOWEST
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
-    type: select
+    type: url-test
     include-all: true
 
   - name: FALLBACK
