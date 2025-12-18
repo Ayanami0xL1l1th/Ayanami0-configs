@@ -260,19 +260,19 @@ rule-providers:
 
   ChinaMax_IP:
     <<: *IPCIDR
-    path: ./rules/ChinaMax_IP.mrs
+    path: ./rules/ChinaMax_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   ChinaMax_Domain:
     <<: *Domain
-    path: ./rules/ChinaMax_Domain.mrs
+    path: ./rules/ChinaMax_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   Private_Domain:
     <<: *Domain
-    path: ./rules/LAN_Domain.mrs
+    path: ./rules/Lan_OCD_Domain.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Private_IP:
     <<: *IPCIDR
-    path: ./rules/LAN_IP.mrs
+    path: ./rules/Lan_OCD_IP.mrs
     url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
@@ -309,15 +309,15 @@ rule-providers:
 
   Game_Domain:
     <<: *Domain
-    path: ./rules/Game_Domain.mrs
+    path: ./rules/Game_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_Domain.mrs"
   Game_IP:
     <<: *IPCIDR
-    path: ./rules/Game_IP.mrs
+    path: ./rules/Game_OCD_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_IP.mrs"
   GameDownload_Domain:
     <<: *Domain
-    path: ./rules/GameDownload_Domain.mrs
+    path: ./rules/GameDownload_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
