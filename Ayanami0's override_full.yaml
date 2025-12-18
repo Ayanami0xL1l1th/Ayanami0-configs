@@ -345,7 +345,7 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/Game_OCD_IP.mrs"
   GameDownload_Domain:
     <<: *Domain
-    path: ./rules/GameDownload_Domain.mrs
+    path: ./rules/GameDownload_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
