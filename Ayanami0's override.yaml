@@ -19,6 +19,10 @@ external-controller-cors:
   allow-origins:
     - "*"
   allow-private-network: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
 # —————————
 
 sniffer:
