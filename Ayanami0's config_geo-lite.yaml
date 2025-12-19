@@ -30,6 +30,13 @@ external-controller-cors:
   allow-origins:
     - "*"
   allow-private-network: true
+<<<<<<< HEAD
+=======
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+>>>>>>> 20d01ca83b13ac50cbb9afedc7a93554b675de0e
 # —————————
 
 p: &p
