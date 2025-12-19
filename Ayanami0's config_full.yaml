@@ -67,10 +67,6 @@ proxy-providers:
       additional-prefix: "p4"
     path: ./proxies/p4.yaml
     url: ##"订阅链接"##
-
-profile:
-  store-selected: true
-  store-fake-ip: true
 # —————————
 
 sniffer:
