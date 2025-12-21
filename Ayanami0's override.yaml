@@ -148,7 +148,13 @@ proxy-groups:
     proxies:
       - REJECT
       - PROXY
-      - DIRECT
+
+  - name: ADPRO
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    type: select
+    proxies:
+      - REJECT
+      - PROXY
 # —————————
 
 rule-anchor:
@@ -257,8 +263,8 @@ rules:
   - RULE-SET,WebRTC,REJECT
   - RULE-SET,Direct,DIRECT                #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS        #去广告
-  - RULE-SET,Advertising_Domain,ADS
-  - RULE-SET,Advertising_IP,ADS
+  - RULE-SET,Advertising_Domain,ADPRO
+  - RULE-SET,Advertising_IP,ADPRO
   - RULE-SET,Game_Domain,DIRECT          #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,GameDownload_Domain,DIRECT
