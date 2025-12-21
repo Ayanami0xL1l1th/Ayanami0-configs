@@ -202,7 +202,6 @@ proxy-groups:
     proxies:
       - REJECT
       - PROXY
-      - DIRECT
 
   - name: UPDATE
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
@@ -356,8 +355,6 @@ rules:
   - RULE-SET,WebRTC,WebRTC
   - RULE-SET,Direct,DIRECT               #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS       #去广告
-  - RULE-SET,Advertising_Domain,ADS
-  - RULE-SET,Advertising_IP,ADS
   - RULE-SET,Game_Domain,DIRECT          #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,GameDownload_Domain,DIRECT
