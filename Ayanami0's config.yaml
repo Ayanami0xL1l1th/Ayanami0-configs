@@ -268,7 +268,7 @@ rule-providers:
   AWAvenue_Ads_Rule:
     <<: *YAML
     path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
-    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml＂
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
 
 ###游戏###
 
