@@ -43,6 +43,7 @@ p: &p
     enable: true
     url: http://www.qualcomm.cn/generate_204
     interval: 300
+  proxy: DIRECT
   header:
       User-Agent:
         - "clash-verge/v2.2.3"

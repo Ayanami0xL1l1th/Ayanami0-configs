@@ -34,7 +34,7 @@ p: &p
     enable: true
     url: http://www.qualcomm.cn/generate_204
     interval: 300
-  proxy: UPDATE
+  proxy: DIRECT
   header:
       User-Agent:
         - "clash-verge/v2.2.3"
@@ -304,13 +304,6 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
     <<: *pg
 
-  - name: UPDATE
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
-    type: select
-    proxies:
-      - DIRECT
-      - PROXY
-
   - name: WebRTC
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
     type: select
@@ -546,6 +539,7 @@ rule-providers:
 rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
+
   - RULE-SET,WebRTC,WebRTC
   - RULE-SET,Direct,DIRECT               #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS       #去广告

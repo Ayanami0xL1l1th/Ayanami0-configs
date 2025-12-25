@@ -34,7 +34,7 @@ p: &p
     enable: true
     url: http://www.qualcomm.cn/generate_204
     interval: 300
-  proxy: UPDATE
+  proxy: DIRECT
   header:
       User-Agent:
         - "clash-verge/v2.2.3"
@@ -148,15 +148,13 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
     type: select
     proxies:
-      - LOWEST
-      - FALLBACK
-      - BALANCE
       - HK
       - TW
       - SG
       - JP
       - US
       - WD
+      - LowRate
       - DIRECT
     include-all: true
 
@@ -196,46 +194,20 @@ proxy-groups:
     type: select
     include-all: true
 
+  - name: LowRate
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png"
+    filter: (?<![0-9])0\.(?:0[0-9]{1,2}|[1-9])(?![0-9])
+    type: select
+    interval: 300
+    tolerance: 50
+    include-all: true
+
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
       - REJECT
       - PROXY
-
-  - name: UPDATE
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Update.svg"
-    type: select
-    proxies:
-      - DIRECT
-      - PROXY
-
-  - name: WebRTC
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
-    type: select
-    proxies:
-      - REJECT
-      - REJECT-DROP
-      - PASS
-
-  - name: LOWEST
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
-    type: url-test
-    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
-    include-all: true
-
-  - name: FALLBACK
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
-    type: fallback
-    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
-    include-all: true
-
-  - name: BALANCE
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
-    type: load-balance
-    strategy: round-robin
-    filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
-    include-all: true
 # —————————
 
 rule-anchor:
@@ -352,7 +324,7 @@ rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
 
-  - RULE-SET,WebRTC,WebRTC
+  - RULE-SET,WebRTC,REJECT
   - RULE-SET,Direct,DIRECT               #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS       #去广告
   - RULE-SET,Game_Domain,DIRECT          #游戏，走直连
