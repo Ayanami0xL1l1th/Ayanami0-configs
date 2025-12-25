@@ -56,28 +56,28 @@ proxy-providers:
   p1:
     <<: *p
     override:
-      additional-prefix: "α"
+      additional-prefix: "α-"
     path: ./proxies/p1.yaml
     url: ##"订阅链接"##
 
   p2:
     <<: *p
     override:
-      additional-prefix: "β"
+      additional-prefix: "β-"
     path: ./proxies/p2.yaml
     url: ##"订阅链接"##
 
   p3:
     <<: *p
     override:
-      additional-prefix: "γ"
+      additional-prefix: "γ-"
     path: ./proxies/p3.yaml
     url: ##"订阅链接"##
 
   p4:
     <<: *p
     override:
-      additional-prefix: "δ"
+      additional-prefix: "δ-"
     path: ./proxies/p4.yaml
     url: ##"订阅链接"##
 # —————————
