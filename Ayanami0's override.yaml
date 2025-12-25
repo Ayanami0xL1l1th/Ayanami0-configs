@@ -92,6 +92,8 @@ proxy-groups:
       - JP
       - US
       - WD
+      - LowRate
+      - DIRECT
     include-all: true
 
   - name: HK
