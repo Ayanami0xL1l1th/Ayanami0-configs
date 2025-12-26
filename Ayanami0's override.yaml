@@ -44,6 +44,20 @@ sniffer:
     - "+.push.apple.com"
 # —————————
 
+tun:
+  enable: false
+  device: Meta
+  stack: mixed
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  udp-timeout: 300
+  auto-route: true
+  strict-route: true
+  auto-redirect: false
+  auto-detect-interface: true
+# —————————
+
 dns:
   enable: true
   ipv6: false
