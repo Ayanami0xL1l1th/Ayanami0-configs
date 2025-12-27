@@ -170,8 +170,8 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
     type: select
     proxies:
-      - PROXY
       - LowRate
+      - PROXY
 
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
