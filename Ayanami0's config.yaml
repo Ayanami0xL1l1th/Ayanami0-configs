@@ -202,6 +202,13 @@ proxy-groups:
     tolerance: 50
     include-all: true
 
+  - name: Emby
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
+    type: select
+    proxies:
+      - LowRate
+      - PROXY
+
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
@@ -287,6 +294,10 @@ rule-providers:
 
 ###国外###
 
+  Emby_Domain:
+    <<: *Domain
+    path: ./rules/Emby_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
   Telegram_Domain:
     <<: *Domain
     path: ./rules/Telegram.mrs
@@ -330,6 +341,7 @@ rules:
   - RULE-SET,GoogleFCM_IP,DIRECT
   - RULE-SET,Microsoft_Domain,DIRECT
 
+  - RULE-SET,Emby_Domain,Emby
   - RULE-SET,Telegram_Domain,PROXY
   - RULE-SET,Telegram_IP,PROXY,no-resolve
   - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
