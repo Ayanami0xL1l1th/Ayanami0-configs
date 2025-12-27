@@ -198,19 +198,19 @@ rule-providers:
   ChinaMax_IP:
     <<: *IPCIDR
     path: ./rules/ChinaMax_OCD_IP.mrs
-    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   ChinaMax_Domain:
     <<: *Domain
     path: ./rules/ChinaMax_OCD_Domain.mrs
-    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   Private_Domain:
     <<: *Domain
     path: ./rules/Lan_OCD_Domain.mrs
-    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Private_IP:
     <<: *IPCIDR
     path: ./rules/Lan_OCD_IP.mrs
-    url: "https://github.com/GitMetaio/rule/raw/refs/heads/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
 
@@ -249,21 +249,32 @@ rule-providers:
     path: ./rules/GameDownload_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
-###国外直连###
+###国外###
 
-  Microsoft_Domain:
+  Telegram_Domain:
     <<: *Domain
-    path: ./rules/Microsoft.mrs
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
-
+    path: ./rules/Telegram.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+  Telegram_IP:
+    <<: *IPCIDR
+    path: ./rules/Telegram_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+  Telegram_No_Resolve:
+    <<: *YAML
+    path: ./rules/Telegram_No_Resolve.yaml
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
   GoogleFCM_Domain:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
   GoogleFCM_IP:
     <<: *IPCIDR
     path: ./rules/GoogleFCM_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+  Microsoft_Domain:
+    <<: *Domain
+    path: ./rules/Microsoft.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
 
 rules:
   - DST-PORT,53,DIRECT
@@ -283,6 +294,9 @@ rules:
   - RULE-SET,GoogleFCM_Domain,DIRECT
   - RULE-SET,GoogleFCM_IP,DIRECT
 
+  - RULE-SET,Telegram_Domain,PROXY
+  - RULE-SET,Telegram_IP,PROXY,no-resolve
+  - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
   
