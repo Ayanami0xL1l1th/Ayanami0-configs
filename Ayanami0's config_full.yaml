@@ -44,32 +44,32 @@ p: &p
         - "mihomo"
 
 proxy-providers:
-  p1:
+  α:
     <<: *p
     override:
       additional-prefix: "α-"
-    path: ./proxies/p1.yaml
+    path: ./proxies/α.yaml
     url: ##"订阅链接"##
 
-  p2:
+  β:
     <<: *p
     override:
       additional-prefix: "β-"
-    path: ./proxies/p2.yaml
+    path: ./proxies/β.yaml
     url: ##"订阅链接"##
 
-  p3:
+  γ:
     <<: *p
     override:
       additional-prefix: "γ-"
-    path: ./proxies/p3.yaml
+    path: ./proxies/γ.yaml
     url: ##"订阅链接"##
 
-  p4:
+  δ:
     <<: *p
     override:
       additional-prefix: "δ-"
-    path: ./proxies/p4.yaml
+    path: ./proxies/δ.yaml
     url: ##"订阅链接"##
 # —————————
 
