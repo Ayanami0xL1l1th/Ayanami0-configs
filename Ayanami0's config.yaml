@@ -347,6 +347,6 @@ rules:
   - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
-  
+
   - MATCH,PROXY
 # —————————
