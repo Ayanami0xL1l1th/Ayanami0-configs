@@ -199,7 +199,7 @@ rule-providers:
     <<: *Classical
     path: ./rules/WebRTC.list
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
-  
+
 ###国内/私有###
 
   ChinaMax_IP:

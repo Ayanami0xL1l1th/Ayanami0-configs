@@ -585,9 +585,9 @@ rules:
   - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
 
   - DOMAIN,browserleaks.com,FINAL
-  
+
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
-  
+
   - MATCH,FINAL
 # —————————
