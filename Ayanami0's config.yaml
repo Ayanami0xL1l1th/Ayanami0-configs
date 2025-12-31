@@ -219,7 +219,12 @@ proxy-groups:
     type: select
     proxies:
       - LowRate
-      - PROXY
+      - HK
+      - SG
+      - JP
+      - TW
+      - US
+      - WD
 
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
