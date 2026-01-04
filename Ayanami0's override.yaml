@@ -178,6 +178,16 @@ proxy-groups:
       - US
       - WD
 
+  - name: Telegram
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    proxies:
+      - HK
+      - SG
+      - JP
+      - TW
+      - US
+      - WD
+
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
@@ -311,9 +321,9 @@ rules:
   - RULE-SET,GoogleFCM_IP,DIRECT
 
   - RULE-SET,Emby_Domain,Emby
-  - RULE-SET,Telegram_Domain,PROXY
-  - RULE-SET,Telegram_IP,PROXY,no-resolve
-  - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
+  - RULE-SET,Telegram_Domain,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
+  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
   
