@@ -180,6 +180,7 @@ proxy-groups:
 
   - name: Telegram
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    type: select
     proxies:
       - HK
       - SG
