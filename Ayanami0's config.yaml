@@ -32,8 +32,7 @@ p: &p
   interval: 86400
   health-check:
     enable: true
-    url: http://www.qualcomm.cn/generate_204
-    interval: 300
+    url: https://cp.cloudflare.com
   proxy: DIRECT
   header:
       User-Agent:
@@ -143,6 +142,10 @@ dns:
        - https://doh.pub/dns-query
 # —————————
 
+proxy_groups: &lite
+    type: select
+    include-all: true
+
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
@@ -161,58 +164,37 @@ proxy-groups:
   - name: HK
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: SG
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: JP
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)).*$"
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: TW
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: US
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates)).*$"
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: WD
     icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/Globe.svg"
     filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: LowRate
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png"
     filter: (?<![0-9])0\.(?:0[0-9]{1,2}|[1-9])(?![0-9])
-    type: select
-    interval: 300
-    tolerance: 50
-    include-all: true
+    <<: *lite
 
   - name: Emby
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"

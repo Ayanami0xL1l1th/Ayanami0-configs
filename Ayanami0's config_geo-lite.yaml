@@ -41,7 +41,7 @@ p: &p
   interval: 86400
   health-check:
     enable: true
-    url: http://www.qualcomm.cn/generate_204
+    url: https://cp.cloudflare.com
     interval: 300
   proxy: DIRECT
   header:
