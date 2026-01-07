@@ -1,0 +1,209 @@
+###Ayanami0's override_rule###
+proxy_groups: &lite
+    type: select
+    include-all: true
+
+proxy-groups:
+  - name: PROXY
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
+    type: select
+    proxies:
+      - HK
+      - SG
+      - JP
+      - TW
+      - US
+      - WD
+      - LowRate
+      - DIRECT
+    include-all: true
+
+  - name: HK
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
+    <<: *lite
+
+  - name: SG
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    filter: (?i)新加坡|坡|狮城|SG|Singapore
+    <<: *lite
+
+  - name: JP
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan
+    <<: *lite
+
+  - name: TW
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    filter: (?i)台|新北|彰化|TW|Taiwan
+    <<: *lite
+
+  - name: US
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates
+    <<: *lite
+
+  - name: WD
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/Globe.svg"
+    exclude-filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网
+    <<: *lite
+
+  - name: LowRate
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png"
+    filter: (?<![0-9])0\.(?:0[0-9]{1,2}|[1-9])(?![0-9])
+    <<: *lite
+
+  - name: Emby
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png"
+    type: select
+    proxies:
+      - LowRate
+      - HK
+      - SG
+      - JP
+      - TW
+      - US
+      - WD
+
+  - name: Telegram
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    type: select
+    proxies:
+      - HK
+      - SG
+      - JP
+      - TW
+      - US
+      - WD
+
+  - name: ADS
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    type: select
+    proxies:
+      - REJECT
+      - PROXY
+# —————————
+
+rule-anchor:
+  YAML: &YAML
+    {type: http, behavior: classical, format: yaml, interval: 86400}
+  IPCIDR: &IPCIDR
+    {type: http, behavior: ipcidr, format: mrs, interval: 86400}
+  Domain: &Domain
+    {type: http, behavior: domain, format: mrs, interval: 86400}
+
+rule-providers:
+
+###国内/私有###
+
+  ChinaMax_IP:
+    <<: *IPCIDR
+    path: ./rules/ChinaMax_OCD_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
+  ChinaMax_Domain:
+    <<: *Domain
+    path: ./rules/ChinaMax_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
+  Private_Domain:
+    <<: *Domain
+    path: ./rules/Lan_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+  Private_IP:
+    <<: *IPCIDR
+    path: ./rules/Lan_OCD_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+
+###直连/代理规则###
+
+  Direct:
+    <<: *YAML
+    path: ./ruleset/direct.yaml
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
+  Global_Domain:
+    <<: *Domain
+    path: ./rules/Global_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
+  Global_IP:
+    <<: *IPCIDR
+    path: ./rules/Global_OCD_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
+
+###去广告###
+
+  AWAvenue_Ads_Rule:
+    <<: *YAML
+    path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+
+###游戏###
+
+  Game_Domain:
+    <<: *Domain
+    path: ./rules/Game_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
+  Game_IP:
+    <<: *IPCIDR
+    path: ./rules/Game_OCD_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
+  GameDownload_Domain:
+    <<: *Domain
+    path: ./rules/GameDownload_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
+
+###国外###
+
+  Emby_Domain:
+    <<: *Domain
+    path: ./rules/Emby_OCD_Domain.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
+  Telegram_Domain:
+    <<: *Domain
+    path: ./rules/Telegram.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+  Telegram_IP:
+    <<: *IPCIDR
+    path: ./rules/Telegram_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+  Telegram_No_Resolve:
+    <<: *YAML
+    path: ./rules/Telegram_No_Resolve.yaml
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
+  GoogleFCM_Domain:
+    <<: *Domain
+    path: ./rules/GoogleFCM.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+  GoogleFCM_IP:
+    <<: *IPCIDR
+    path: ./rules/GoogleFCM_IP.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+  Microsoft_Domain:
+    <<: *Domain
+    path: ./rules/Microsoft.mrs
+    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+
+rules:
+  - DST-PORT,53,DIRECT
+  - DST-PORT,853,DIRECT
+  
+  - RULE-SET,Direct,DIRECT                #直连规则
+  - RULE-SET,AWAvenue_Ads_Rule,ADS        #去广告
+  - RULE-SET,Game_Domain,DIRECT           #游戏，走直连
+  - RULE-SET,Game_IP,DIRECT
+  - RULE-SET,GameDownload_Domain,DIRECT
+  - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
+  - RULE-SET,ChinaMax_IP,DIRECT
+  - RULE-SET,Private_Domain,DIRECT
+  - RULE-SET,Private_IP,DIRECT
+  - RULE-SET,Microsoft_Domain,DIRECT
+  - RULE-SET,GoogleFCM_Domain,DIRECT
+  - RULE-SET,GoogleFCM_IP,DIRECT
+
+  - RULE-SET,Emby_Domain,Emby
+  - RULE-SET,Telegram_Domain,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
+  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
+  - RULE-SET,Global_Domain,PROXY
+  - RULE-SET,Global_IP,PROXY
+  
+  - MATCH,PROXY
+  # —————————
