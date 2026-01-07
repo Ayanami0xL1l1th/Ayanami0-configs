@@ -95,11 +95,11 @@ dns:
        - https://doh.pub/dns-query
 # —————————
 
-proxy_groups: &lite
+lite: &lite
     type: select
     include-all: true
 
-proxy_groups: &pg
+pg: &pg
     type: select
     proxies:
       - PROXY
