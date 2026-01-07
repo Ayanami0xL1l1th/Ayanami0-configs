@@ -297,14 +297,6 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
     <<: *pg
 
-  - name: WebRTC
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/WebRTC.svg"
-    type: select
-    proxies:
-      - REJECT
-      - REJECT-DROP
-      - PASS
-
   - name: LOWEST
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: url-test
@@ -326,8 +318,6 @@ proxy-groups:
 # —————————
 
 rule-anchor:
-  Classical: &Classical
-    {type: http, behavior: classical, format: text, interval: 86400}
   YAML: &YAML
     {type: http, behavior: classical, format: yaml, interval: 86400}
   IPCIDR: &IPCIDR
@@ -336,13 +326,6 @@ rule-anchor:
     {type: http, behavior: domain, format: mrs, interval: 86400}
 
 rule-providers:
-
-###WebRTC###
-
-  WebRTC:
-    <<: *Classical
-    path: ./rules/WebRTC.list
-    url: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
 
 ###国内/私有###
 
@@ -525,7 +508,6 @@ rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
 
-  - RULE-SET,WebRTC,WebRTC
   - RULE-SET,Direct,DIRECT               #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS       #去广告
   - RULE-SET,Game_Domain,Game            #游戏，走直连

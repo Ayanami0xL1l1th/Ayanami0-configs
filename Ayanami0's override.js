@@ -204,14 +204,6 @@ const overrideConfig = {
   ],
   
   "rule-providers": {
-    "WebRTC": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "text",
-      "interval": 86400,
-      "path": "./rules/WebRTC.list",
-      "url": "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/rules/WebRTC.list"
-    },
     "ChinaMax_IP": {
       "type": "http",
       "behavior": "ipcidr",
@@ -361,7 +353,6 @@ const overrideConfig = {
   "rules": [
     "DST-PORT,53,DIRECT",
     "DST-PORT,853,DIRECT",
-    "RULE-SET,WebRTC,REJECT",
     "RULE-SET,Direct,DIRECT",
     "RULE-SET,AWAvenue_Ads_Rule,ADS",
     "RULE-SET,Game_Domain,DIRECT",
