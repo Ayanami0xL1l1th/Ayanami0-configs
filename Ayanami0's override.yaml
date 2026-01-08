@@ -95,7 +95,7 @@ dns:
        - https://doh.pub/dns-query
 # —————————
 
-proxy_groups: &lite
+lite: &lite
     type: select
     include-all: true
 

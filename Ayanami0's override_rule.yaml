@@ -1,5 +1,5 @@
 ###Ayanami0's override_rule###
-proxy_groups: &lite
+lite: &lite
     type: select
     include-all: true
 
