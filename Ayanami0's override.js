@@ -47,6 +47,7 @@ const overrideConfig = {
     "enable": false,
     "device": "Meta",
     "stack": "mixed",
+    "mtu": 1480,
     "dns-hijack": ["any:53", "tcp://any:53"],
     "udp-timeout": 300,
     "auto-route": true,
@@ -62,7 +63,7 @@ const overrideConfig = {
     "prefer-h3": false,
     "respect-rules": true,
     "cache-algorithm": "arc",
-    "cache-size": 2048,
+    "cache-size": 4096,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
     "fake-ip-filter-mode": "blacklist",
@@ -71,7 +72,10 @@ const overrideConfig = {
       "*.local",
       "time.*.com",
       "ntp.*.com",
-      "RULE-SET:Private_Domain",
+      "*.esm.run", 
+      "*.jsdelivr.net", 
+      "*.jsdelivr.com", 
+      "RULE-SET:Lan_Domain",
       "RULE-SET:GoogleFCM_Domain"
     ],
     "default-nameserver": [
@@ -88,8 +92,8 @@ const overrideConfig = {
       "https://doh.pub/dns-query"
     ],
     "nameserver": [
-      "https://dns.google/dns-query",
-      "https://cloudflare-dns.com/dns-query"
+      "https://cloudflare-dns.com/dns-query",
+      "https://dns.google/dns-query"
     ],
     "nameserver-policy": {
       "RULE-SET:ChinaMax_Domain,Microsoft_Domain": [
@@ -220,7 +224,7 @@ const overrideConfig = {
       "path": "./rules/ChinaMax_OCD_Domain.mrs",
       "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
     },
-    "Private_Domain": {
+    "Lan_Domain": {
       "type": "http",
       "behavior": "domain",
       "format": "mrs",
@@ -228,7 +232,7 @@ const overrideConfig = {
       "path": "./rules/Lan_OCD_Domain.mrs",
       "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
     },
-    "Private_IP": {
+    "Lan_IP": {
       "type": "http",
       "behavior": "ipcidr",
       "format": "mrs",
@@ -353,22 +357,24 @@ const overrideConfig = {
   "rules": [
     "DST-PORT,53,DIRECT",
     "DST-PORT,853,DIRECT",
+    "RULE-SET,Lan_Domain,DIRECT",
+    "RULE-SET,Lan_IP,DIRECT,no-resolve",
     "RULE-SET,Direct,DIRECT",
     "RULE-SET,AWAvenue_Ads_Rule,ADS",
     "RULE-SET,Game_Domain,DIRECT",
     "RULE-SET,Game_IP,DIRECT",
     "RULE-SET,GameDownload_Domain,DIRECT",
+    "DOMAIN-SUFFIX,esm.run,DIRECT",
+    "DOMAIN-SUFFIX,jsdelivr.com,DIRECT",
+    "DOMAIN-SUFFIX,jsdelivr.net,DIRECT",
     "RULE-SET,ChinaMax_Domain,DIRECT,no-resolve",
     "RULE-SET,ChinaMax_IP,DIRECT",
-    "RULE-SET,Private_Domain,DIRECT",
-    "RULE-SET,Private_IP,DIRECT",
     "RULE-SET,Microsoft_Domain,DIRECT",
     "RULE-SET,GoogleFCM_Domain,DIRECT",
     "RULE-SET,GoogleFCM_IP,DIRECT",
     "RULE-SET,Emby_Domain,Emby",
     "RULE-SET,Telegram_Domain,Telegram",
     "RULE-SET,Telegram_IP,Telegram,no-resolve",
-    "RULE-SET,Telegram_No_Resolve,Telegram,no-resolve",
     "RULE-SET,Global_Domain,PROXY",
     "RULE-SET,Global_IP,PROXY",
     "MATCH,PROXY"

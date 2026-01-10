@@ -48,6 +48,7 @@ tun:
   enable: false
   device: Meta
   stack: mixed
+  mtu: 1480
   dns-hijack:
     - any:53
     - tcp://any:53
@@ -65,7 +66,7 @@ dns:
   prefer-h3: false     # 如果DNS服务器支持DoH3会优先使用h3，默认关
   respect-rules: true  # 让连接DNS服务器时能够遵循规则
   cache-algorithm: arc # 使用性能更优的 ARC 缓存算法
-  cache-size: 2048     # 限制缓存大小，避免占用过多内存
+  cache-size: 4096     # 限制缓存大小，避免占用过多内存
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter-mode: blacklist
@@ -74,7 +75,10 @@ dns:
     - "*.local"
     - "time.*.com"
     - "ntp.*.com"
-    - "RULE-SET:Private_Domain"
+    - "*.esm.run"
+    - "*.jsdelivr.net"
+    - "*.jsdelivr.com"
+    - "RULE-SET:Lan_Domain"
     - "RULE-SET:GoogleFCM_Domain"
   default-nameserver:
     - 223.5.5.5
@@ -87,8 +91,8 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver:
-    - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
   nameserver-policy:
     "RULE-SET:ChinaMax_Domain,Microsoft_Domain":
        - https://dns.alidns.com/dns-query
@@ -200,11 +204,11 @@ rule-providers:
     <<: *Domain
     path: ./rules/ChinaMax_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
-  Private_Domain:
+  Lan_Domain:
     <<: *Domain
     path: ./rules/Lan_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
-  Private_IP:
+  Lan_IP:
     <<: *IPCIDR
     path: ./rules/Lan_OCD_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
@@ -260,10 +264,6 @@ rule-providers:
     <<: *IPCIDR
     path: ./rules/Telegram_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
-  Telegram_No_Resolve:
-    <<: *YAML
-    path: ./rules/Telegram_No_Resolve.yaml
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
   GoogleFCM_Domain:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
@@ -280,26 +280,28 @@ rule-providers:
 rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
-  
+
+  - RULE-SET,Lan_Domain,DIRECT
+  - RULE-SET,Lan_IP,DIRECT,no-resolve
   - RULE-SET,Direct,DIRECT                #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS        #去广告
   - RULE-SET,Game_Domain,DIRECT           #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,GameDownload_Domain,DIRECT
-  - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,esm.run,DIRECT
+  - DOMAIN-SUFFIX,jsdelivr.com,DIRECT
+  - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
+  - RULE-SET,ChinaMax_Domain,DIRECT
   - RULE-SET,ChinaMax_IP,DIRECT
-  - RULE-SET,Private_Domain,DIRECT
-  - RULE-SET,Private_IP,DIRECT
-  - RULE-SET,Microsoft_Domain,DIRECT
   - RULE-SET,GoogleFCM_Domain,DIRECT
   - RULE-SET,GoogleFCM_IP,DIRECT
+  - RULE-SET,Microsoft_Domain,DIRECT
 
   - RULE-SET,Emby_Domain,Emby
-  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
   - RULE-SET,Telegram_Domain,Telegram
-  - RULE-SET,Telegram_IP,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
-  
+
   - MATCH,PROXY
   # —————————

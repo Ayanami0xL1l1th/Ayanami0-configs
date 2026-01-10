@@ -104,11 +104,11 @@ rule-providers:
     <<: *Domain
     path: ./rules/ChinaMax_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
-  Private_Domain:
+  Lan_Domain:
     <<: *Domain
     path: ./rules/Lan_OCD_Domain.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
-  Private_IP:
+  Lan_IP:
     <<: *IPCIDR
     path: ./rules/Lan_OCD_IP.mrs
     url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
@@ -185,25 +185,27 @@ rules:
   - DST-PORT,53,DIRECT
   - DST-PORT,853,DIRECT
 
+  - RULE-SET,Lan_Domain,DIRECT
+  - RULE-SET,Lan_IP,DIRECT,no-resolve
   - RULE-SET,Direct,DIRECT                #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS        #去广告
   - RULE-SET,Game_Domain,DIRECT           #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,GameDownload_Domain,DIRECT
-  - RULE-SET,ChinaMax_Domain,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,esm.run,DIRECT
+  - DOMAIN-SUFFIX,jsdelivr.com,DIRECT
+  - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
+  - RULE-SET,ChinaMax_Domain,DIRECT
   - RULE-SET,ChinaMax_IP,DIRECT
-  - RULE-SET,Private_Domain,DIRECT
-  - RULE-SET,Private_IP,DIRECT
   - RULE-SET,Microsoft_Domain,DIRECT
   - RULE-SET,GoogleFCM_Domain,DIRECT
   - RULE-SET,GoogleFCM_IP,DIRECT
 
   - RULE-SET,Emby_Domain,Emby
-  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
   - RULE-SET,Telegram_Domain,Telegram
-  - RULE-SET,Telegram_IP,Telegram
+  - RULE-SET,Telegram_IP,Telegram,no-resolve
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
-  
+
   - MATCH,PROXY
   # —————————
