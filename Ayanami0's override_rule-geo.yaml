@@ -1,3 +1,4 @@
+###Ayanami0's override_rule-geo###
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
