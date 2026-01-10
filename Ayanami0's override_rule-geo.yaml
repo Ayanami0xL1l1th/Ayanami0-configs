@@ -1,3 +1,4 @@
+###Ayanami0's override_rule-geo###
 proxy-groups:
   - name: PROXY
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
@@ -16,7 +17,6 @@ rules:
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,geolocation-!cn,PROXY
 
-  - GEOIP,telegram,PROXY,no-resolve
   - GEOIP,cn,DIRECT
   - GEOIP,private,DIRECT,no-resolve
 
