@@ -170,7 +170,7 @@ rules:
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,geolocation-!cn,PROXY
 
-  - GEOIP,telegram,PROXY,no-resolve
+  - GEOIP,telegram,PROXY
   - GEOIP,cn,DIRECT
   - GEOIP,private,DIRECT,no-resolve
 

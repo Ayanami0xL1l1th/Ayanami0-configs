@@ -498,9 +498,9 @@ rules:
 
   - RULE-SET,Microsoft_Domain,Microsoft
 
+  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
   - RULE-SET,Telegram_Domain,Telegram
-  - RULE-SET,Telegram_IP,Telegram,no-resolve
-  - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
+  - RULE-SET,Telegram_IP,Telegram
 
   - DOMAIN,browserleaks.com,FINAL
   

@@ -18,7 +18,7 @@ rules:
   - GEOSITE,geolocation-!cn,PROXY
 
   - GEOIP,cn,DIRECT
-  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,private,DIRECT
 
   - MATCH,PROXY
 # —————————

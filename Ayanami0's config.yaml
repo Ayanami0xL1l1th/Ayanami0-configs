@@ -332,9 +332,9 @@ rules:
   - RULE-SET,Microsoft_Domain,DIRECT
 
   - RULE-SET,Emby_Domain,Emby
-  - RULE-SET,Telegram_Domain,PROXY
-  - RULE-SET,Telegram_IP,PROXY,no-resolve
-  - RULE-SET,Telegram_No_Resolve,PROXY,no-resolve
+  - RULE-SET,Telegram_No_Resolve,Telegram,no-resolve
+  - RULE-SET,Telegram_Domain,Telegram
+  - RULE-SET,Telegram_IP,Telegram
   - RULE-SET,Global_Domain,PROXY
   - RULE-SET,Global_IP,PROXY
 
