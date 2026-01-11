@@ -35,13 +35,6 @@ p: &p
     url: https://cp.cloudflare.com
     interval: 300
   proxy: DIRECT
-  header:
-      User-Agent:
-        - "clash-verge/v2.2.3"
-        - "ClashMetaForAndroid/2.11.2.Meta"
-        - "ClashforWindows/0.19.23"
-        - "clash.meta"
-        - "mihomo"
 
 proxy-providers:
   α:
