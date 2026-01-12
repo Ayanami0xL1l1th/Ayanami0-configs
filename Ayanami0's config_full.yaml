@@ -298,6 +298,7 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
     type: url-test
     filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
+    url: https://cp.cloudflare.com
     include-all: true
 
   - name: FALLBACK
