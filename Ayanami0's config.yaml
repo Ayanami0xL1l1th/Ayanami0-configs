@@ -205,6 +205,17 @@ proxy-groups:
       - US
       - WD
 
+  - name: Telegram
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    type: select
+    proxies:
+      - HK
+      - SG
+      - JP
+      - TW
+      - US
+      - WD
+
   - name: ADS
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
     type: select
