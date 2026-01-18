@@ -115,9 +115,6 @@ dns:
     - "*.local"
     - "time.*.com"
     - "ntp.*.com"
-    - "*.esm.run"
-    - "*.jsdelivr.net"
-    - "*.jsdelivr.com"
     - "RULE-SET:Lan_Domain"
     - "RULE-SET:GoogleFCM_Domain"
   default-nameserver:
@@ -145,7 +142,7 @@ lite: &lite
 
 proxy-groups:
   - name: PROXY
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing@rm/Home/icon/All.svg"
     type: select
     proxies:
       - HK
@@ -206,7 +203,7 @@ proxy-groups:
       - WD
 
   - name: Telegram
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png"
     type: select
     proxies:
       - HK
@@ -217,7 +214,7 @@ proxy-groups:
       - WD
 
   - name: ADS
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
       - REJECT
@@ -240,34 +237,34 @@ rule-providers:
   ChinaMax_IP:
     <<: *IPCIDR
     path: ./rules/ChinaMax_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   ChinaMax_Domain:
     <<: *Domain
     path: ./rules/ChinaMax_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   Lan_Domain:
     <<: *Domain
     path: ./rules/Lan_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Lan_IP:
     <<: *IPCIDR
     path: ./rules/Lan_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
 
   Direct:
     <<: *YAML
     path: ./ruleset/direct.yaml
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
   Global_Domain:
     <<: *Domain
     path: ./rules/Global_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
   Global_IP:
     <<: *IPCIDR
     path: ./rules/Global_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
 
 ###去广告###
 
@@ -281,42 +278,42 @@ rule-providers:
   Game_Domain:
     <<: *Domain
     path: ./rules/Game_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
   Game_IP:
     <<: *IPCIDR
     path: ./rules/Game_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
   GameDownload_Domain:
     <<: *Domain
     path: ./rules/GameDownload_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
 
   Emby_Domain:
     <<: *Domain
     path: ./rules/Emby_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
   Telegram_Domain:
     <<: *Domain
     path: ./rules/Telegram.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
   Telegram_IP:
     <<: *IPCIDR
     path: ./rules/Telegram_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
   GoogleFCM_Domain:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
   GoogleFCM_IP:
     <<: *IPCIDR
     path: ./rules/GoogleFCM_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
   Microsoft_Domain:
     <<: *Domain
     path: ./rules/Microsoft.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
 
 rules:
   - DST-PORT,53,DIRECT
@@ -329,14 +326,12 @@ rules:
   - RULE-SET,Game_Domain,DIRECT          #游戏，走直连
   - RULE-SET,Game_IP,DIRECT
   - RULE-SET,GameDownload_Domain,DIRECT
-  - DOMAIN-SUFFIX,esm.run,DIRECT
-  - DOMAIN-SUFFIX,jsdelivr.com,DIRECT
-  - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
-  - RULE-SET,ChinaMax_Domain,DIRECT
-  - RULE-SET,ChinaMax_IP,DIRECT
   - RULE-SET,GoogleFCM_Domain,DIRECT
   - RULE-SET,GoogleFCM_IP,DIRECT
   - RULE-SET,Microsoft_Domain,DIRECT
+  - DOMAIN-SUFFIX,immersivetranslate.com,DIRECT
+  - RULE-SET,ChinaMax_Domain,DIRECT
+  - RULE-SET,ChinaMax_IP,DIRECT
 
   - RULE-SET,Emby_Domain,Emby
   - RULE-SET,Telegram_Domain,PROXY

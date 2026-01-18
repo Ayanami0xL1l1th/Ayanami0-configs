@@ -116,9 +116,6 @@ dns:
     - "*.local"
     - "time.*.com"
     - "ntp.*.com"
-    - "*.esm.run"
-    - "*.jsdelivr.net"
-    - "*.jsdelivr.com"
     - "RULE-SET:Lan_Domain"
     - "RULE-SET:GoogleFCM_Domain"
   default-nameserver:
@@ -159,7 +156,7 @@ pg: &pg
 
 proxy-groups:
   - name: PROXY
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/rm/Home/icon/All.svg"
     type: select
     proxies:
       - HK
@@ -174,32 +171,32 @@ proxy-groups:
 
   - name: HK
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
-    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
+    filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong
     <<: *lite
 
   - name: SG
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
-    filter: "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$"
+    filter: (?i)新加坡|坡|狮城|SG|Singapore
     <<: *lite
 
   - name: JP
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
-    filter: "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)).*$"
+    filter: (?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan
     <<: *lite
 
   - name: TW
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
-    filter: "^(?=.*(台|新北|彰化|TW|Taiwan)).*$"
+    filter: (?i)台|新北|彰化|TW|Taiwan
     <<: *lite
 
   - name: US
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
-    filter: "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates)).*$"
+    filter: (?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates
     <<: *lite
 
   - name: WD
-    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/Globe.svg"
-    filter: "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/Globe.png"
+    exclude-filter: (?i)港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网
     <<: *lite
 
   - name: LowRate
@@ -208,21 +205,21 @@ proxy-groups:
     <<: *lite
 
   - name: ADS
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/rm/Home/icon/No-ads-all.svg"
     type: select
     proxies:
       - REJECT
       - PROXY
 
   - name: Game
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Steam.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/rm/Home/icon/Steam.svg"
     type: select
     proxies:
       - DIRECT
       - PROXY
 
   - name: Apple
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Apple.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png"
     type: select
     proxies:
       - DIRECT
@@ -236,7 +233,7 @@ proxy-groups:
       - PROXY
 
   - name: GoogleFCM
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png"
     type: select
     proxies:
       - DIRECT
@@ -247,68 +244,75 @@ proxy-groups:
     <<: *pg
 
   - name: Telegram
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png"
     <<: *pg
 
   - name: Discord
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Discord.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png"
     <<: *pg
 
   - name: Spotify
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Spotify.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png"
     <<: *pg
 
   - name: TikTok
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/TikTok.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png"
     <<: *pg
 
   - name: YouTube
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/YouTube.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
     <<: *pg
 
   - name: Netflix
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Netflix.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png"
     <<: *pg
 
   - name: Google
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Google.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google.png"
     <<: *pg
 
+  - name: GoogleFCM
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/GoogleFCM.svg"
+    type: select
+    proxies:
+      - DIRECT
+      - PROXY
+
   - name: Facebook
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png"
     <<: *pg
 
   - name: OpenAI
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/OpenAI.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/OpenAI.svg"
     <<: *pg
 
   - name: GitHub
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png"
     <<: *pg
 
   - name: Twitter(X)
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png"
     <<: *pg
 
   - name: FINAL
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/HBASE-copy.svg"
+    icon: "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/HBASE-copy.svg"
     <<: *pg
 
   - name: LOWEST
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Return.png"
     type: url-test
     filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
     url: https://cp.cloudflare.com
     include-all: true
 
   - name: FALLBACK
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Return.png"
     type: fallback
     filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
     include-all: true
 
   - name: BALANCE
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Return.svg"
+    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Return.png"
     type: load-balance
     strategy: round-robin
     filter: "^(?!.*(套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额)).*$"
@@ -330,34 +334,34 @@ rule-providers:
   ChinaMax_IP:
     <<: *IPCIDR
     path: ./rules/ChinaMax_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   ChinaMax_Domain:
     <<: *Domain
     path: ./rules/ChinaMax_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   Lan_Domain:
     <<: *Domain
     path: ./rules/Lan_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Lan_IP:
     <<: *IPCIDR
     path: ./rules/Lan_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
 
   Direct:
     <<: *YAML
     path: ./ruleset/direct.yaml
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
   Global_Domain:
     <<: *Domain
     path: ./rules/Global_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
   Global_IP:
     <<: *IPCIDR
     path: ./rules/Global_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
 
 ###去广告###
 
@@ -371,132 +375,132 @@ rule-providers:
   Game_Domain:
     <<: *Domain
     path: ./rules/Game_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
   Game_IP:
     <<: *IPCIDR
     path: ./rules/Game_OCD_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
   GameDownload_Domain:
     <<: *Domain
     path: ./rules/GameDownload_OCD_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
 
   Emby_Domain:
     <<: *Domain
     path: ./rules/Emby_Domain.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
 
   TikTok_Domain:
     <<: *Domain
     path: ./rules/TikTok.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
 
   Spotify_Domain:
     <<: *Domain
     path: ./rules/Spotify.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
   Spotify_IP:
     <<: *IPCIDR
     path: ./rules/Spotify_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
 
   Facebook_Domain:
     <<: *Domain
     path: ./rules/Facebook.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
   Facebook_IP:
     <<: *IPCIDR
     path: ./rules/Facebook_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
 
   Telegram_Domain:
     <<: *Domain
     path: ./rules/Telegram.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
   Telegram_IP:
     <<: *IPCIDR
     path: ./rules/Telegram_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
 
   YouTube_Domain:
     <<: *Domain
     path: ./rules/YouTube.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
   YouTube_IP:
     <<: *IPCIDR
     path: ./rules/YouTube_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
 
   Google_Domain:
     <<: *Domain
     path: ./rules/Google.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_Domain.mrs"
   Google_IP:
     <<: *IPCIDR
     path: ./rules/Google_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Google/Google_OCD_IP.mrs"
 
   GoogleFCM_Domain:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
   GoogleFCM_IP:
     <<: *IPCIDR
     path: ./rules/GoogleFCM_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
 
   Microsoft_Domain:
     <<: *Domain
     path: ./rules/Microsoft.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
 
   Apple_Domain:
     <<: *Domain
     path: ./rules/Apple.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
   Apple_IP:
     <<: *IPCIDR
     path: ./rules/Apple_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Apple/Apple_OCD_IP.mrs"
 
   OpenAI_Domain:
     <<: *Domain
     path: ./rules/OpenAI.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
   OpenAI_IP:
     <<: *IPCIDR
     path: ./rules/OpenAI_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
 
   Netflix_Domain:
     <<: *Domain
     path: ./rules/Netflix.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
   Netflix_IP:
     <<: *IPCIDR
     path: ./rules/Netflix_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
 
   Discord_Domain:
     <<: *Domain
     path: ./rules/Discord.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
 
   GitHub_Domain:
     <<: *Domain
     path: ./rules/GitHub.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
 
   Twitter_Domain:
     <<: *Domain
     path: ./rules/Twitter.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
   Twitter_IP:
     <<: *IPCIDR
     path: ./rules/Twitter_IP.mrs
-    url: "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
 
 rules:
   - DST-PORT,53,DIRECT
@@ -509,9 +513,7 @@ rules:
   - RULE-SET,Game_Domain,Game            #游戏，走直连
   - RULE-SET,Game_IP,Game
   - RULE-SET,GameDownload_Domain,Game
-  - DOMAIN-SUFFIX,esm.run,DIRECT
-  - DOMAIN-SUFFIX,jsdelivr.com,DIRECT
-  - DOMAIN-SUFFIX,jsdelivr.net,DIRECT
+  - DOMAIN-SUFFIX,immersivetranslate.com,DIRECT
   - RULE-SET,ChinaMax_Domain,DIRECT
   - RULE-SET,ChinaMax_IP,DIRECT
 
