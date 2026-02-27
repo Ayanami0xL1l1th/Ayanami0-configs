@@ -1,6 +1,8 @@
 // Ayanami0's override //
 const overrideConfig = {
   "mixed-port": 7890,
+  "redir-port": 7891,
+  "tproxy-port": 1536,
   "ipv6": false,
   "mode": "Rule",
   "allow-lan": true,
@@ -11,18 +13,21 @@ const overrideConfig = {
   "log-level": "silent",
   "find-process-mode": "strict",
   "global-client-fingerprint": "random",
-  
+
   "external-controller": "127.0.0.1:9090",
+  "secret": "123456",
+  "external-ui": "WebUI/Zashboard",
+  "external-ui-url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip",
   "external-controller-cors": {
     "allow-origins": ["*"],
     "allow-private-network": true
   },
-  
+
   "profile": {
     "store-selected": true,
     "store-fake-ip": true
   },
-  
+
   "sniffer": {
     "enable": true,
     "force-dns-mapping": true,
@@ -42,7 +47,7 @@ const overrideConfig = {
     "force-domain": ["+.v2ex.com"],
     "skip-domain": ["Mijia Cloud", "+.push.apple.com"]
   },
-  
+
   "tun": {
     "enable": false,
     "device": "Meta",
@@ -55,7 +60,7 @@ const overrideConfig = {
     "auto-redirect": false,
     "auto-detect-interface": true
   },
-  
+
   "dns": {
     "enable": true,
     "ipv6": false,
@@ -72,9 +77,6 @@ const overrideConfig = {
       "*.local",
       "time.*.com",
       "ntp.*.com",
-      "*.esm.run", 
-      "*.jsdelivr.net", 
-      "*.jsdelivr.com", 
       "RULE-SET:Lan_Domain",
       "RULE-SET:GoogleFCM_Domain"
     ],
@@ -102,11 +104,11 @@ const overrideConfig = {
       ]
     }
   },
-  
+
   "proxy-groups": [
     {
       "name": "PROXY",
-      "icon": "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/All.svg",
+      "icon": "https://raw.githubusercontent.com/GitMetaio/Surfing@rm/Home/icon/All.svg",
       "type": "select",
       "proxies": [
         "HK",
@@ -123,42 +125,42 @@ const overrideConfig = {
     {
       "name": "HK",
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png",
-      "filter": "(?i)港|HK|hk|Hong Kong|HongKong|hongkong",
+      "filter": "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$",
       "type": "select",
       "include-all": true
     },
     {
       "name": "SG",
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png",
-      "filter": "(?i)新加坡|坡|狮城|SG|Singapore",
+      "filter": "^(?=.*(新加坡|坡|狮城|SG|Singapore)).*$",
       "type": "select",
       "include-all": true
     },
     {
       "name": "JP",
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png",
-      "filter": "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan",
+      "filter": "^(?=.*(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)).*$",
       "type": "select",
       "include-all": true
     },
     {
       "name": "TW",
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png",
-      "filter": "(?i)台|新北|彰化|TW|Taiwan",
+      "filter": "^(?=.*(台|新北|彰化|TW|Taiwan)).*$",
       "type": "select",
       "include-all": true
     },
     {
       "name": "US",
       "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png",
-      "filter": "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates",
+      "filter": "^(?=.*(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates)).*$",
       "type": "select",
       "include-all": true
     },
     {
       "name": "WD",
       "icon": "https://raw.githubusercontent.com/GitMetaio/Surfing/refs/heads/rm/Home/icon/Globe.svg",
-      "exclude-filter": "(?i)港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网",
+      "filter": "^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|台|新北|彰化|TW|Taiwan|新加坡|坡|狮城|SG|Singapore|灾|网易|Netease|套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网)).*$",
       "type": "select",
       "include-all": true
     },
@@ -185,7 +187,7 @@ const overrideConfig = {
     },
     {
       "name": "Telegram",
-      "icon": "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Telegram.svg",
+      "icon": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png",
       "type": "select",
       "proxies": [
         "HK",
@@ -198,7 +200,7 @@ const overrideConfig = {
     },
     {
       "name": "ADS",
-      "icon": "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/No-ads-all.svg",
+      "icon": "https://raw.githubusercontent.com/GitMetaio/Surfing/rm/Home/icon/No-ads-all.svg",
       "type": "select",
       "proxies": [
         "REJECT",
@@ -206,7 +208,7 @@ const overrideConfig = {
       ]
     }
   ],
-  
+
   "rule-providers": {
     "ChinaMax_IP": {
       "type": "http",
@@ -214,7 +216,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/ChinaMax_OCD_IP.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
     },
     "ChinaMax_Domain": {
       "type": "http",
@@ -222,7 +224,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/ChinaMax_OCD_Domain.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
     },
     "Lan_Domain": {
       "type": "http",
@@ -230,7 +232,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Lan_OCD_Domain.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
     },
     "Lan_IP": {
       "type": "http",
@@ -238,7 +240,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Lan_OCD_IP.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Lan/Lan_OCD_IP.mrs"
     },
     "Direct": {
       "type": "http",
@@ -246,7 +248,7 @@ const overrideConfig = {
       "format": "yaml",
       "interval": 86400,
       "path": "./ruleset/direct.yaml",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Direct/Direct.yaml"
     },
     "Global_Domain": {
       "type": "http",
@@ -254,7 +256,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Global_OCD_Domain.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_Domain.mrs"
     },
     "Global_IP": {
       "type": "http",
@@ -262,7 +264,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Global_OCD_IP.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Global/Global_OCD_IP.mrs"
     },
     "AWAvenue_Ads_Rule": {
       "type": "http",
@@ -278,7 +280,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Game_OCD_Domain.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_Domain.mrs"
     },
     "Game_IP": {
       "type": "http",
@@ -286,7 +288,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Game_OCD_IP.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/Game_OCD_IP.mrs"
     },
     "GameDownload_Domain": {
       "type": "http",
@@ -294,7 +296,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/GameDownload_OCD_Domain.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
     },
     "Emby_Domain": {
       "type": "http",
@@ -302,7 +304,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Emby_OCD_Domain.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
     },
     "Telegram_Domain": {
       "type": "http",
@@ -310,7 +312,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Telegram.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
     },
     "Telegram_IP": {
       "type": "http",
@@ -318,15 +320,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Telegram_IP.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
-    },
-    "Telegram_No_Resolve": {
-      "type": "http",
-      "behavior": "classical",
-      "format": "yaml",
-      "interval": 86400,
-      "path": "./rules/Telegram_No_Resolve.yaml",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_No_Resolve.yaml"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
     },
     "GoogleFCM_Domain": {
       "type": "http",
@@ -334,7 +328,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/GoogleFCM.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
     },
     "GoogleFCM_IP": {
       "type": "http",
@@ -342,7 +336,7 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/GoogleFCM_IP.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
     },
     "Microsoft_Domain": {
       "type": "http",
@@ -350,10 +344,10 @@ const overrideConfig = {
       "format": "mrs",
       "interval": 86400,
       "path": "./rules/Microsoft.mrs",
-      "url": "https://cdn.jsdelivr.net/gh/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+      "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD@master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
     }
   },
-  
+
   "rules": [
     "DST-PORT,53,DIRECT",
     "DST-PORT,853,DIRECT",
@@ -364,17 +358,12 @@ const overrideConfig = {
     "RULE-SET,Game_Domain,DIRECT",
     "RULE-SET,Game_IP,DIRECT",
     "RULE-SET,GameDownload_Domain,DIRECT",
-    "DOMAIN-SUFFIX,esm.run,DIRECT",
-    "DOMAIN-SUFFIX,jsdelivr.com,DIRECT",
-    "DOMAIN-SUFFIX,jsdelivr.net,DIRECT",
-    "RULE-SET,ChinaMax_Domain,DIRECT,no-resolve",
+    "DOMAIN-SUFFIX,immersivetranslate.com,DIRECT",
+    "RULE-SET,ChinaMax_Domain,DIRECT",
     "RULE-SET,ChinaMax_IP,DIRECT",
-    "RULE-SET,Microsoft_Domain,DIRECT",
-    "RULE-SET,GoogleFCM_Domain,DIRECT",
-    "RULE-SET,GoogleFCM_IP,DIRECT",
     "RULE-SET,Emby_Domain,Emby",
-    "RULE-SET,Telegram_Domain,Telegram",
-    "RULE-SET,Telegram_IP,Telegram,no-resolve",
+    "RULE-SET,Telegram_Domain,PROXY",
+    "RULE-SET,Telegram_IP,PROXY,no-resolve",
     "RULE-SET,Global_Domain,PROXY",
     "RULE-SET,Global_IP,PROXY",
     "MATCH,PROXY"
