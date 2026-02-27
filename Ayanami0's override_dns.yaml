@@ -1,0 +1,30 @@
+###Ayanami0's override_dns###
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  prefer-h3: false     # 如果DNS服务器支持DoH3会优先使用h3，默认关
+  respect-rules: true  # 让连接DNS服务器时能够遵循规则
+  cache-algorithm: arc # 使用性能更优的 ARC 缓存算法
+  cache-size: 4096     # 限制缓存大小，避免占用过多内存
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "time.*.com"
+    - "ntp.*.com"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 223.6.6.6
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
