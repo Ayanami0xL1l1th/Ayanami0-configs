@@ -365,9 +365,6 @@ rule-providers:
     url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
 
 rules:
-  - DST-PORT,53,DIRECT
-  - DST-PORT,853,DIRECT
-
   - RULE-SET,Lan_Domain,DIRECT
   - RULE-SET,Lan_IP,DIRECT,no-resolve
   - RULE-SET,Direct,DIRECT               #直连规则

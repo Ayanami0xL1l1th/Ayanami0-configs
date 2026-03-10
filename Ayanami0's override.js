@@ -349,8 +349,6 @@ const overrideConfig = {
   },
 
   "rules": [
-    "DST-PORT,53,DIRECT",
-    "DST-PORT,853,DIRECT",
     "RULE-SET,Lan_Domain,DIRECT",
     "RULE-SET,Lan_IP,DIRECT,no-resolve",
     "RULE-SET,Direct,DIRECT",
