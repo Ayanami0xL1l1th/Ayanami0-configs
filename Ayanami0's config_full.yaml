@@ -116,8 +116,8 @@ dns:
     - "*.local"
     - "time.*.com"
     - "ntp.*.com"
-    - "RULE-SET:Lan_Domain"
-    - "RULE-SET:GoogleFCM_Domain"
+    - "RULE-SET:Lan"
+    - "RULE-SET:GoogleFCM"
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
@@ -132,7 +132,7 @@ dns:
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
   nameserver-policy:
-    "RULE-SET:ChinaMax_Domain,Microsoft_Domain":
+    "RULE-SET:ChinaMax,Microsoft":
        - https://dns.alidns.com/dns-query
        - https://doh.pub/dns-query
 # —————————
@@ -333,20 +333,20 @@ rule-providers:
 
   ChinaMax_IP:
     <<: *IPCIDR
-    path: ./rules/ChinaMax_OCD_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
-  ChinaMax_Domain:
+    path: ./rules/ChinaMax_IP.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax_IP.mrs"
+  ChinaMax:
     <<: *Domain
-    path: ./rules/ChinaMax_OCD_Domain.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
-  Lan_Domain:
+    path: ./rules/ChinaMax.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax.mrs"
+  Lan:
     <<: *Domain
-    path: ./rules/Lan_OCD_Domain.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
+    path: ./rules/Lan.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan.mrs"
   Lan_IP:
     <<: *IPCIDR
-    path: ./rules/Lan_OCD_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
+    path: ./rules/Lan_IP.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan_IP.mrs"
 
 ###直连/代理规则###
 
@@ -354,209 +354,214 @@ rule-providers:
     <<: *YAML
     path: ./ruleset/direct.yaml
     url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Direct/Direct.yaml"
-  Global_Domain:
+  Global:
     <<: *Domain
-    path: ./rules/Global_OCD_Domain.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global_OCD_Domain.mrs"
+    path: ./rules/Global.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global.mrs"
   Global_IP:
     <<: *IPCIDR
-    path: ./rules/Global_OCD_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global_OCD_IP.mrs"
+    path: ./rules/Global_IP.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global_IP.mrs"
 
 ###去广告###
 
   AWAvenue_Ads_Rule:
     <<: *YAML
-    path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
+    path: ./ruleset/AWAvenue_Ads_Rule.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+  Anti-AD:
+    <<: *Domain
+    path: ./ruleset/Anti-AD.mrs
+    url: "https://anti-ad.net/mihomo.mrs"
 
 ###游戏###
 
-  Game_Domain:
+  Game:
     <<: *Domain
-    path: ./rules/Game_OCD_Domain.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game_OCD_Domain.mrs"
+    path: ./rules/Game.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game.mrs"
   Game_IP:
     <<: *IPCIDR
-    path: ./rules/Game_OCD_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game_OCD_IP.mrs"
-  GameDownload_Domain:
+    path: ./rules/Game_IP.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game_IP.mrs"
+  GameDownload:
     <<: *Domain
-    path: ./rules/GameDownload_OCD_Domain.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
+    path: ./rules/GameDownload.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/GameDownload/GameDownload.mrs"
 
 ###国外###
 
-  Emby_Domain:
+  Emby:
     <<: *Domain
-    path: ./rules/Emby_Domain.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
+    path: ./rules/Emby.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Emby/Emby.mrs"
 
-  TikTok_Domain:
+  TikTok:
     <<: *Domain
     path: ./rules/TikTok.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/TikTok/TikTok_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/TikTok/TikTok.mrs"
 
-  Spotify_Domain:
+  Spotify:
     <<: *Domain
     path: ./rules/Spotify.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Spotify/Spotify.mrs"
   Spotify_IP:
     <<: *IPCIDR
     path: ./rules/Spotify_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Spotify/Spotify_IP.mrs"
 
-  Facebook_Domain:
+  Facebook:
     <<: *Domain
     path: ./rules/Facebook.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Facebook/Facebook_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Facebook/Facebook.mrs"
   Facebook_IP:
     <<: *IPCIDR
     path: ./rules/Facebook_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Facebook/Facebook_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Facebook/Facebook_IP.mrs"
 
-  Telegram_Domain:
+  Telegram:
     <<: *Domain
     path: ./rules/Telegram.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram.mrs"
   Telegram_IP:
     <<: *IPCIDR
     path: ./rules/Telegram_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram_IP.mrs"
 
-  YouTube_Domain:
+  YouTube:
     <<: *Domain
     path: ./rules/YouTube.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/YouTube/YouTube.mrs"
   YouTube_IP:
     <<: *IPCIDR
     path: ./rules/YouTube_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/YouTube/YouTube_IP.mrs"
 
-  Google_Domain:
+  Google:
     <<: *Domain
     path: ./rules/Google.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Google/Google_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Google/Google.mrs"
   Google_IP:
     <<: *IPCIDR
     path: ./rules/Google_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Google/Google_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Google/Google_IP.mrs"
 
-  GoogleFCM_Domain:
+  GoogleFCM:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM.mrs"
   GoogleFCM_IP:
     <<: *IPCIDR
     path: ./rules/GoogleFCM_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_IP.mrs"
 
-  Microsoft_Domain:
+  Microsoft:
     <<: *Domain
     path: ./rules/Microsoft.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Microsoft/Microsoft.mrs"
 
-  Apple_Domain:
+  Apple:
     <<: *Domain
     path: ./rules/Apple.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Apple/Apple_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Apple/Apple.mrs"
   Apple_IP:
     <<: *IPCIDR
     path: ./rules/Apple_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Apple/Apple_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Apple/Apple_IP.mrs"
 
-  OpenAI_Domain:
+  OpenAI:
     <<: *Domain
     path: ./rules/OpenAI.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI.mrs"
   OpenAI_IP:
     <<: *IPCIDR
     path: ./rules/OpenAI_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/OpenAI/OpenAI_IP.mrs"
 
-  Netflix_Domain:
+  Netflix:
     <<: *Domain
     path: ./rules/Netflix.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Netflix/Netflix_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Netflix/Netflix.mrs"
   Netflix_IP:
     <<: *IPCIDR
     path: ./rules/Netflix_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Netflix/Netflix_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Netflix/Netflix_IP.mrs"
 
-  Discord_Domain:
+  Discord:
     <<: *Domain
     path: ./rules/Discord.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Discord/Discord_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Discord/Discord.mrs"
 
-  GitHub_Domain:
+  GitHub:
     <<: *Domain
     path: ./rules/GitHub.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GitHub/GitHub_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GitHub/GitHub.mrs"
 
-  Twitter_Domain:
+  Twitter:
     <<: *Domain
     path: ./rules/Twitter.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Twitter/Twitter_OCD_Domain.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Twitter/Twitter.mrs"
   Twitter_IP:
     <<: *IPCIDR
     path: ./rules/Twitter_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Twitter/Twitter_OCD_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Twitter/Twitter_IP.mrs"
 
 rules:
-  - RULE-SET,Lan_Domain,DIRECT
+  - RULE-SET,Lan,DIRECT
   - RULE-SET,Lan_IP,DIRECT,no-resolve
   - RULE-SET,Direct,DIRECT               #直连规则
   - RULE-SET,AWAvenue_Ads_Rule,ADS       #去广告
-  - RULE-SET,Game_Domain,Game            #游戏，走直连
+#  - RULE-SET,Anti-AD,ADS                #拦截更严格，默认用秋风去广告
+  - RULE-SET,Game,Game            #游戏，走直连
   - RULE-SET,Game_IP,Game
-  - RULE-SET,GameDownload_Domain,Game
+  - RULE-SET,GameDownload,Game
   - DOMAIN-SUFFIX,immersivetranslate.com,DIRECT
-  - RULE-SET,ChinaMax_Domain,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
   - RULE-SET,ChinaMax_IP,DIRECT
 
-  - RULE-SET,Microsoft_Domain,Microsoft
+  - RULE-SET,Microsoft,Microsoft
 
-  - RULE-SET,GoogleFCM_Domain,GoogleFCM
+  - RULE-SET,GoogleFCM,GoogleFCM
   - RULE-SET,GoogleFCM_IP,GoogleFCM
 
-  - RULE-SET,Emby_Domain,Emby
+  - RULE-SET,Emby,Emby
 
-  - RULE-SET,GitHub_Domain,GitHub
+  - RULE-SET,GitHub,GitHub
 
-  - RULE-SET,Discord_Domain,Discord
+  - RULE-SET,Discord,Discord
 
-  - RULE-SET,TikTok_Domain,TikTok
+  - RULE-SET,TikTok,TikTok
 
-  - RULE-SET,Twitter_Domain,Twitter(X)
+  - RULE-SET,Twitter,Twitter(X)
   - RULE-SET,Twitter_IP,Twitter(X)
 
-  - RULE-SET,YouTube_Domain,YouTube
+  - RULE-SET,YouTube,YouTube
   - RULE-SET,YouTube_IP,YouTube
 
-  - RULE-SET,Google_Domain,Google
+  - RULE-SET,Google,Google
   - RULE-SET,Google_IP,Google
 
-  - RULE-SET,Netflix_Domain,Netflix
+  - RULE-SET,Netflix,Netflix
   - RULE-SET,Netflix_IP,Netflix
 
-  - RULE-SET,Spotify_Domain,Spotify
+  - RULE-SET,Spotify,Spotify
   - RULE-SET,Spotify_IP,Spotify
 
-  - RULE-SET,Facebook_Domain,Facebook
+  - RULE-SET,Facebook,Facebook
   - RULE-SET,Facebook_IP,Facebook
 
-  - RULE-SET,OpenAI_Domain,OpenAI
+  - RULE-SET,OpenAI,OpenAI
   - RULE-SET,OpenAI_IP,OpenAI
 
-  - RULE-SET,Apple_Domain,Apple
+  - RULE-SET,Apple,Apple
   - RULE-SET,Apple_IP,Apple
 
-  - RULE-SET,Telegram_Domain,Telegram
+  - RULE-SET,Telegram,Telegram
   - RULE-SET,Telegram_IP,Telegram,no-resolve
 
   - DOMAIN,browserleaks.com,FINAL
 
-  - RULE-SET,Global_Domain,PROXY
+  - RULE-SET,Global,PROXY
   - RULE-SET,Global_IP,PROXY
 
   - MATCH,FINAL
