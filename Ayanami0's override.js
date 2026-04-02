@@ -247,7 +247,7 @@ const overrideConfig = {
       "behavior": "classical",
       "format": "yaml",
       "interval": 86400,
-      "path": "./ruleset/direct.yaml",
+      "path": "./rules/direct.yaml",
       "url": "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Direct/Direct.yaml"
     },
     "Global_Domain": {
@@ -271,7 +271,7 @@ const overrideConfig = {
       "behavior": "classical",
       "format": "yaml",
       "interval": 86400,
-      "path": "./ruleset/AWAvenue_Ads_Rule_Clash.yaml",
+      "path": "./rules/AWAvenue_Ads_Rule_Clash.yaml",
       "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
     },
     "Game_Domain": {

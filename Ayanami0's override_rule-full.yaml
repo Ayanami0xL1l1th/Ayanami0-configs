@@ -214,7 +214,7 @@ rule-providers:
 
   Direct:
     <<: *YAML
-    path: ./ruleset/direct.yaml
+    path: ./rules/direct.yaml
     url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Direct/Direct.yaml"
   Global:
     <<: *Domain
@@ -229,7 +229,7 @@ rule-providers:
 
   AWAvenue_Ads_Rule:
     <<: *YAML
-    path: ./ruleset/AWAvenue_Ads_Rule_Clash.yaml
+    path: ./rules/AWAvenue_Ads_Rule_Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
 
 ###游戏###
