@@ -76,7 +76,11 @@ const overrideConfig = {
       "*.lan",
       "*.local",
       "time.*.com",
+      "time.*.gov",
       "ntp.*.com",
+      "pool.ntp.org",
+      "*.msftconnecttest.com",
+      "*.msftncsi.com",
       "RULE-SET:Lan_Domain",
       "RULE-SET:GoogleFCM_Domain"
     ],

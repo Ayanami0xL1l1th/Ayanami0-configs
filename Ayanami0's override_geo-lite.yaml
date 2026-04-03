@@ -85,7 +85,11 @@ dns:
     - "*.lan"
     - "*.local"
     - "time.*.com"
+    - "time.*.gov"
     - "ntp.*.com"
+    - "pool.ntp.org"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
     - "GEOSITE:private"
     - "GEOSITE:googlefcm"
   default-nameserver:

@@ -135,6 +135,10 @@ rule-providers:
     <<: *YAML
     path: ./rules/AWAvenue_Ads_Rule_Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+  Anti-AD:
+    <<: *Domain
+    path: ./rules/Anti-AD.mrs
+    url: "https://anti-ad.net/mihomo.mrs"
 
 ###游戏###
 

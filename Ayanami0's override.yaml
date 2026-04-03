@@ -199,19 +199,19 @@ rule-providers:
   ChinaMax:
     <<: *Domain
     path: ./rules/ChinaMax.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax_OCD_Domain.mrs"
   ChinaMax_IP:
     <<: *IPCIDR
     path: ./rules/ChinaMax_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/ChinaMax/ChinaMax_OCD_IP.mrs"
   Lan:
     <<: *Domain
     path: ./rules/Lan.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan_OCD_Domain.mrs"
   Lan_IP:
     <<: *IPCIDR
     path: ./rules/Lan_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Lan/Lan_OCD_IP.mrs"
 
 ###直连/代理规则###
 
@@ -222,11 +222,11 @@ rule-providers:
   Global:
     <<: *Domain
     path: ./rules/Global.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global_OCD_Domain.mrs"
   Global_IP:
     <<: *IPCIDR
     path: ./rules/Global_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Global/Global_OCD_IP.mrs"
 
 ###去广告###
 
@@ -234,48 +234,52 @@ rule-providers:
     <<: *YAML
     path: ./rules/AWAvenue_Ads_Rule_Clash.yaml
     url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Clash.yaml"
+  Anti-AD:
+    <<: *Domain
+    path: ./rules/Anti-AD.mrs
+    url: "https://anti-ad.net/mihomo.mrs"
 
 ###游戏###
 
   Game:
     <<: *Domain
     path: ./rules/Game.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game_OCD_Domain.mrs"
   Game_IP:
     <<: *IPCIDR
     path: ./rules/Game_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/Game_OCD_IP.mrs"
   GameDownload:
     <<: *Domain
     path: ./rules/GameDownload.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/GameDownload/GameDownload.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Game/GameDownload/GameDownload_OCD_Domain.mrs"
 
 ###国外###
 
   Emby:
     <<: *Domain
     path: ./rules/Emby.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Emby/Emby.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Emby/Emby_OCD_Domain.mrs"
   Telegram:
     <<: *Domain
     path: ./rules/Telegram.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram_OCD_Domain.mrs"
   Telegram_IP:
     <<: *IPCIDR
     path: ./rules/Telegram_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Telegram/Telegram_OCD_IP.mrs"
   GoogleFCM:
     <<: *Domain
     path: ./rules/GoogleFCM.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_Domain.mrs"
   GoogleFCM_IP:
     <<: *IPCIDR
     path: ./rules/GoogleFCM_IP.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_IP.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/GoogleFCM/GoogleFCM_OCD_IP.mrs"
   Microsoft:
     <<: *Domain
     path: ./rules/Microsoft.mrs
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Microsoft/Microsoft.mrs"
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Microsoft/Microsoft_OCD_Domain.mrs"
 
 rules:
   - RULE-SET,Lan,DIRECT
