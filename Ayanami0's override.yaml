@@ -184,8 +184,6 @@ proxy-groups:
 # —————————
 
 rule-anchor:
-  YAML: &YAML
-    {type: http, behavior: classical, format: yaml, interval: 86400}
   IPCIDR: &IPCIDR
     {type: http, behavior: ipcidr, format: mrs, interval: 86400}
   Domain: &Domain
@@ -216,9 +214,9 @@ rule-providers:
 ###直连/代理规则###
 
   Direct:
-    <<: *YAML
-    path: ./rules/direct.yaml
-    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Direct/Direct.yaml"
+    <<: *Domain
+    path: ./rules/direct.mrs
+    url: "https://raw.githubusercontent.com/Ayanami0xL1l1th/Rule-for-OCD/master/rule/Clash/Direct/Direct_OCD_Domain.mrs"
   Global:
     <<: *Domain
     path: ./rules/Global.mrs
